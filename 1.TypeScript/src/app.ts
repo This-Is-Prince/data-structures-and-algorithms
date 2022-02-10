@@ -1,1 +1,1 @@
-require("./LinkedList/1.Singly_Linked_List");
+require("./1.Array_ADT/ArrayADT");
