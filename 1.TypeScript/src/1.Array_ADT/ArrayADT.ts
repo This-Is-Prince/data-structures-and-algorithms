@@ -21,11 +21,22 @@ class ArrayADT<T> {
   }
   private makeSizeDouble() {
     this._size = this.size * 2;
+    const temp = this.copyFromThis();
+    this.A = temp;
+  }
+
+  private makeSizeHalf() {
+    this._size = Math.floor(this.size / 2);
+    const temp = this.copyFromThis();
+    this.A = temp;
+  }
+
+  private copyFromThis(): T[] {
     const temp = new Array(this.size);
     for (let i = 0; i < this.length; i++) {
       temp[i] = this.A[i];
     }
-    this.A = temp;
+    return temp;
   }
 
   public append(value: T) {
@@ -54,6 +65,22 @@ class ArrayADT<T> {
 
       this.A[index] = value;
       this._length++;
+    }
+  }
+
+  public delete(index: number) {
+    if (index >= this.length) {
+      console.log("index is greater than or equal to length");
+    } else if (index < 0) {
+      console.log("index can't be negative");
+    } else {
+      for (let i = index; i < this.length - 1; i++) {
+        this.A[i] = this.A[i + 1];
+      }
+      this._length--;
+      if (this.size / 2 >= this.length) {
+        this.makeSizeHalf();
+      }
     }
   }
 
@@ -95,6 +122,12 @@ arr.display();
 console.log(arr.length);
 console.log(arr.size);
 arr.insert(5, 0);
+arr.display();
+console.log(arr.length);
+console.log(arr.size);
+arr.delete(0);
+arr.delete(4);
+// arr.delete(6);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);

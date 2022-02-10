@@ -19,11 +19,20 @@ class ArrayADT {
     }
     makeSizeDouble() {
         this._size = this.size * 2;
+        const temp = this.copyFromThis();
+        this.A = temp;
+    }
+    makeSizeHalf() {
+        this._size = Math.floor(this.size / 2);
+        const temp = this.copyFromThis();
+        this.A = temp;
+    }
+    copyFromThis() {
         const temp = new Array(this.size);
         for (let i = 0; i < this.length; i++) {
             temp[i] = this.A[i];
         }
-        this.A = temp;
+        return temp;
     }
     append(value) {
         if (this.length === this.size) {
@@ -50,6 +59,23 @@ class ArrayADT {
             }
             this.A[index] = value;
             this._length++;
+        }
+    }
+    delete(index) {
+        if (index >= this.length) {
+            console.log("index is greater than or equal to length");
+        }
+        else if (index < 0) {
+            console.log("index can't be negative");
+        }
+        else {
+            for (let i = index; i < this.length - 1; i++) {
+                this.A[i] = this.A[i + 1];
+            }
+            this._length--;
+            if (this.size / 2 >= this.length) {
+                this.makeSizeHalf();
+            }
         }
     }
     display() {
@@ -88,6 +114,12 @@ arr.display();
 console.log(arr.length);
 console.log(arr.size);
 arr.insert(5, 0);
+arr.display();
+console.log(arr.length);
+console.log(arr.size);
+arr.delete(0);
+arr.delete(4);
+// arr.delete(6);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
