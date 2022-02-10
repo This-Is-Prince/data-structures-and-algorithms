@@ -25,14 +25,11 @@ class ArrayADT {
         }
         this.A = temp;
     }
-    add(value) {
+    append(value) {
         if (this.length === this.size) {
             this.makeSizeDouble();
-            this.A[this.length] = value;
         }
-        else {
-            this.A[this.length] = value;
-        }
+        this.A[this.length] = value;
         this._length++;
     }
     insert(index, value) {
@@ -46,17 +43,12 @@ class ArrayADT {
             if (this.length === this.size) {
                 this.makeSizeDouble();
             }
-            if (this.length === index) {
-                this.A[this.length] = value;
-            }
-            else {
-                let tmpIndex = this.length;
-                while (index !== tmpIndex) {
-                    this.A[tmpIndex] = this.A[tmpIndex - 1];
-                    tmpIndex--;
+            if (this.length !== index) {
+                for (let i = this.length; i > index; i--) {
+                    this.A[i] = this.A[i - 1];
                 }
-                this.A[index] = value;
             }
+            this.A[index] = value;
             this._length++;
         }
     }
@@ -78,24 +70,24 @@ const arr = new ArrayADT(3);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
-arr.add(1);
-arr.add(2);
-arr.add(3);
-arr.add(4);
+arr.append(1);
+arr.append(2);
+arr.append(3);
+arr.append(4);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
-arr.add(11);
-arr.add(12);
+arr.append(11);
+arr.append(12);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
-arr.add(21);
-arr.add(22);
+arr.append(21);
+arr.append(22);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
-arr.insert(8, 0);
+arr.insert(5, 0);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
