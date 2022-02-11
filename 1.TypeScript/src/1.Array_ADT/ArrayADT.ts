@@ -84,6 +84,15 @@ class ArrayADT<T> {
     }
   }
 
+  public linearSearch(key: T): number {
+    for (let i = 0; i < this.length; i++) {
+      if (this.A[i] === key) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   public display() {
     if (!this.isEmpty()) {
       for (let i = 0; i < this.length; i++) {
