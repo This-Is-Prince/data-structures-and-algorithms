@@ -180,6 +180,36 @@ class ArrayADT {
     avg() {
         return this.sum() / this.length;
     }
+    reverse() {
+        let start = 0;
+        let end = this.length - 1;
+        let tmp = 0;
+        while (start < end) {
+            tmp = this.A[start];
+            this.A[start] = this.A[end];
+            this.A[end] = tmp;
+            start++;
+            end--;
+        }
+    }
+    leftShift() {
+        for (let i = 0; i < this.length - 1; i++) {
+            this.A[i] = this.A[i + 1];
+        }
+        this._length--;
+        if (this.size / 2 >= this.length) {
+            this.makeSizeHalf();
+        }
+    }
+    leftRotate() {
+        if (this.length > 0) {
+            let first = this.A[0];
+            for (let i = 0; i < this.length - 1; i++) {
+                this.A[i] = this.A[i + 1];
+            }
+            this.A[this.length - 1] = first;
+        }
+    }
     display() {
         if (!this.isEmpty()) {
             for (let i = 0; i < this.length; i++) {
@@ -228,3 +258,5 @@ console.log(arr.size);
 console.log(arr.linearSearch(22));
 console.log(arr.binarySearch_ThroughLoop(21));
 console.log(arr.binarySearch_ThroughRecursion(3));
+arr.reverse();
+arr.display();
