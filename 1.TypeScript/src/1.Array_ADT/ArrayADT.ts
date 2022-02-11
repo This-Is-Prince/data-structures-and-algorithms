@@ -1,5 +1,5 @@
-class ArrayADT<T> {
-  private A!: T[];
+class ArrayADT {
+  private A!: number[];
   private _size!: number;
   private _length!: number;
 
@@ -31,7 +31,7 @@ class ArrayADT<T> {
     this.A = temp;
   }
 
-  private copyFromThis(): T[] {
+  private copyFromThis(): number[] {
     const temp = new Array(this.size);
     for (let i = 0; i < this.length; i++) {
       temp[i] = this.A[i];
@@ -39,7 +39,7 @@ class ArrayADT<T> {
     return temp;
   }
 
-  public append(value: T) {
+  public append(value: number) {
     if (this.length === this.size) {
       this.makeSizeDouble();
     }
@@ -47,7 +47,7 @@ class ArrayADT<T> {
     this._length++;
   }
 
-  public insert(index: number, value: T) {
+  public insert(index: number, value: number) {
     if (index > this.length) {
       console.log("index is greater than length");
     } else if (index < 0) {
@@ -84,7 +84,7 @@ class ArrayADT<T> {
     }
   }
 
-  public linearSearch(key: T): number {
+  public linearSearch(key: number): number {
     for (let i = 0; i < this.length; i++) {
       if (this.A[i] === key) {
         return i;
@@ -93,7 +93,7 @@ class ArrayADT<T> {
     return -1;
   }
 
-  public improvedLinearSearch(key: T): number {
+  public improvedLinearSearch(key: number): number {
     for (let i = 0; i < this.length; i++) {
       if (this.A[i] === key) {
         const temp = this.A[i];
@@ -105,7 +105,7 @@ class ArrayADT<T> {
     return -1;
   }
 
-  public binarySearch_ThroughLoop(key: T): number {
+  public binarySearch_ThroughLoop(key: number): number {
     let low = 0;
     let high = this.length - 1;
     let mid = 0;
@@ -122,12 +122,12 @@ class ArrayADT<T> {
     return -1;
   }
 
-  public binarySearch_ThroughRecursion(key: T): number {
+  public binarySearch_ThroughRecursion(key: number): number {
     return this.binarySearch_ThroughRecursion_Util(key, 0, this.length - 1);
   }
 
   private binarySearch_ThroughRecursion_Util(
-    key: T,
+    key: number,
     low: number,
     high: number
   ): number {
@@ -145,6 +145,55 @@ class ArrayADT<T> {
     }
   }
 
+  public get(index: number): number | null {
+    if (index >= 0 && index < this.length) {
+      return this.A[index];
+    } else {
+      return null;
+    }
+  }
+
+  public set(index: number, value: number): boolean {
+    if (index >= 0 && index < this.length) {
+      this.A[index] = value;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public max(): number {
+    let max = Number.MIN_VALUE;
+    for (let i = 0; i < this.length; i++) {
+      if (this.A[i] > max) {
+        max = this.A[i];
+      }
+    }
+    return max;
+  }
+
+  public min(): number {
+    let min = Number.MAX_VALUE;
+    for (let i = 0; i < this.length; i++) {
+      if (this.A[i] < min) {
+        min = this.A[i];
+      }
+    }
+    return min;
+  }
+
+  public sum(): number {
+    let sum = 0;
+    for (let i = 0; i < this.length; i++) {
+      sum += this.A[i];
+    }
+    return sum;
+  }
+
+  public avg(): number {
+    return this.sum() / this.length;
+  }
+
   public display() {
     if (!this.isEmpty()) {
       for (let i = 0; i < this.length; i++) {
@@ -158,7 +207,7 @@ class ArrayADT<T> {
     console.log();
   }
 }
-const arr = new ArrayADT<number>(3);
+const arr = new ArrayADT(3);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);

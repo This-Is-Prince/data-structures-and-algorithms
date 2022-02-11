@@ -135,6 +135,51 @@ class ArrayADT {
             return -1;
         }
     }
+    get(index) {
+        if (index >= 0 && index < this.length) {
+            return this.A[index];
+        }
+        else {
+            return null;
+        }
+    }
+    set(index, value) {
+        if (index >= 0 && index < this.length) {
+            this.A[index] = value;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    max() {
+        let max = Number.MIN_VALUE;
+        for (let i = 0; i < this.length; i++) {
+            if (this.A[i] > max) {
+                max = this.A[i];
+            }
+        }
+        return max;
+    }
+    min() {
+        let min = Number.MAX_VALUE;
+        for (let i = 0; i < this.length; i++) {
+            if (this.A[i] < min) {
+                min = this.A[i];
+            }
+        }
+        return min;
+    }
+    sum() {
+        let sum = 0;
+        for (let i = 0; i < this.length; i++) {
+            sum += this.A[i];
+        }
+        return sum;
+    }
+    avg() {
+        return this.sum() / this.length;
+    }
     display() {
         if (!this.isEmpty()) {
             for (let i = 0; i < this.length; i++) {
