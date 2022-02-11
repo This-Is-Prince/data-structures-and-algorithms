@@ -78,6 +78,25 @@ class ArrayADT {
             }
         }
     }
+    linearSearch(key) {
+        for (let i = 0; i < this.length; i++) {
+            if (this.A[i] === key) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    improvedLinearSearch(key) {
+        for (let i = 0; i < this.length; i++) {
+            if (this.A[i] === key) {
+                const temp = this.A[i];
+                this.A[i] = this.A[0];
+                this.A[0] = temp;
+                return 0;
+            }
+        }
+        return -1;
+    }
     display() {
         if (!this.isEmpty()) {
             for (let i = 0; i < this.length; i++) {
@@ -123,3 +142,4 @@ arr.delete(4);
 arr.display();
 console.log(arr.length);
 console.log(arr.size);
+console.log(arr.linearSearch(22));
