@@ -97,6 +97,44 @@ class ArrayADT {
         }
         return -1;
     }
+    binarySearch_ThroughLoop(key) {
+        let low = 0;
+        let high = this.length - 1;
+        let mid = 0;
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            if (key === this.A[mid]) {
+                return mid;
+            }
+            else if (key < this.A[mid]) {
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+    binarySearch_ThroughRecursion(key) {
+        return this.binarySearch_ThroughRecursion_Util(key, 0, this.length - 1);
+    }
+    binarySearch_ThroughRecursion_Util(key, low, high) {
+        if (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            if (key === this.A[mid]) {
+                return mid;
+            }
+            else if (key < this.A[mid]) {
+                return this.binarySearch_ThroughRecursion_Util(key, low, mid - 1);
+            }
+            else {
+                return this.binarySearch_ThroughRecursion_Util(key, mid + 1, high);
+            }
+        }
+        else {
+            return -1;
+        }
+    }
     display() {
         if (!this.isEmpty()) {
             for (let i = 0; i < this.length; i++) {
@@ -143,3 +181,5 @@ arr.display();
 console.log(arr.length);
 console.log(arr.size);
 console.log(arr.linearSearch(22));
+console.log(arr.binarySearch_ThroughLoop(21));
+console.log(arr.binarySearch_ThroughRecursion(3));

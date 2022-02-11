@@ -105,6 +105,46 @@ class ArrayADT<T> {
     return -1;
   }
 
+  public binarySearch_ThroughLoop(key: T): number {
+    let low = 0;
+    let high = this.length - 1;
+    let mid = 0;
+    while (low <= high) {
+      mid = Math.floor((low + high) / 2);
+      if (key === this.A[mid]) {
+        return mid;
+      } else if (key < this.A[mid]) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    return -1;
+  }
+
+  public binarySearch_ThroughRecursion(key: T): number {
+    return this.binarySearch_ThroughRecursion_Util(key, 0, this.length - 1);
+  }
+
+  private binarySearch_ThroughRecursion_Util(
+    key: T,
+    low: number,
+    high: number
+  ): number {
+    if (low <= high) {
+      let mid = Math.floor((low + high) / 2);
+      if (key === this.A[mid]) {
+        return mid;
+      } else if (key < this.A[mid]) {
+        return this.binarySearch_ThroughRecursion_Util(key, low, mid - 1);
+      } else {
+        return this.binarySearch_ThroughRecursion_Util(key, mid + 1, high);
+      }
+    } else {
+      return -1;
+    }
+  }
+
   public display() {
     if (!this.isEmpty()) {
       for (let i = 0; i < this.length; i++) {
@@ -153,3 +193,5 @@ arr.display();
 console.log(arr.length);
 console.log(arr.size);
 console.log(arr.linearSearch(22));
+console.log(arr.binarySearch_ThroughLoop(21));
+console.log(arr.binarySearch_ThroughRecursion(3));
