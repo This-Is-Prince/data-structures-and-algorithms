@@ -227,6 +227,23 @@ class ArrayADT {
     }
   }
 
+  public insertInSortedArray(value: number) {
+    if (this.length === this.size) {
+      this.makeSizeDouble();
+    }
+    if (this.length === 0) {
+      this.A[0] = value;
+      return;
+    }
+    let index = this.length - 1;
+    while (this.A[index] > value) {
+      this.A[index + 1] = this.A[index];
+      index--;
+    }
+    this.A[index + 1] = value;
+    this._length++;
+  }
+
   public display() {
     if (!this.isEmpty()) {
       for (let i = 0; i < this.length; i++) {
