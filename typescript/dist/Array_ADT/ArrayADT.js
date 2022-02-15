@@ -210,6 +210,22 @@ class ArrayADT {
             this.A[this.length - 1] = first;
         }
     }
+    insertInSortedArray(value) {
+        if (this.length === this.size) {
+            this.makeSizeDouble();
+        }
+        if (this.length === 0) {
+            this.A[0] = value;
+            return;
+        }
+        let index = this.length - 1;
+        while (this.A[index] > value) {
+            this.A[index + 1] = this.A[index];
+            index--;
+        }
+        this.A[index + 1] = value;
+        this._length++;
+    }
     display() {
         if (!this.isEmpty()) {
             for (let i = 0; i < this.length; i++) {
