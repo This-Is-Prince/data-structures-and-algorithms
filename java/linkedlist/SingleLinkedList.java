@@ -97,6 +97,54 @@ public class SingleLinkedList {
     }
 
     /**
+     * Count No of nodes in linked list, using loop and return
+     * 
+     * @return no of nodes
+     */
+    public int countNoOfNodesUsingLoop() {
+        int count = 0;
+        SNode tmp = this.head;
+        while (tmp != null) {
+            count++;
+            tmp = tmp.next;
+        }
+        return count;
+    }
+
+    /**
+     * Count No of nodes in linked list, using recursion and return
+     * 
+     * @return no of nodes
+     */
+    public int countNoOfNodesUsingRecursion() {
+        return this.countNoOfNodesUsingRecursionUtil(this.head);
+    }
+
+    /**
+     * Calculate sum of data in linked list using loop and return the sum
+     * 
+     * @return total sum
+     */
+    public int sumUsingLoop() {
+        int sum = 0;
+        SNode tmp = this.head;
+        while (tmp != null) {
+            sum += tmp.data;
+            tmp = tmp.next;
+        }
+        return sum;
+    }
+
+    /**
+     * Calculate sum of data in linked list using recursion and return the sum
+     * 
+     * @return total sum
+     */
+    public int sumUsingRecursion() {
+        return this.sumUsingRecursionUtil(this.head);
+    }
+
+    /**
      * Util function for displayUsingRecursion function
      * 
      * @param node Linked list node
@@ -127,6 +175,34 @@ public class SingleLinkedList {
             } else {
                 node.print(", ");
             }
+        }
+    }
+
+    /**
+     * Util function for countNoOfNodesUsingRecursion function
+     * 
+     * @param node Node of linked list
+     * @return no of nodes
+     */
+    private int countNoOfNodesUsingRecursionUtil(SNode node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + this.countNoOfNodesUsingRecursionUtil(node.next);
+        }
+    }
+
+    /**
+     * Util function for sumUsingRecursion function
+     * 
+     * @param node Node of linked list
+     * @return total sum
+     */
+    private int sumUsingRecursionUtil(SNode node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return this.sumUsingRecursionUtil(node.next) + node.data;
         }
     }
 }

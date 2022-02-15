@@ -7,5 +7,9 @@ public class Debug {
         arr.displayUsingRecursion();
         arr.displayUsingLoopInReverseOrder();
         arr.displayUsingRecursionInReverseOrder();
+        System.out.println(arr.countNoOfNodesUsingLoop());
+        System.out.println(arr.countNoOfNodesUsingRecursion());
+        System.out.println(arr.sumUsingLoop());
+        System.out.println(arr.sumUsingRecursion());
     }
 }
