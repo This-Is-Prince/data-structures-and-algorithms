@@ -22,5 +22,6 @@ func main() {
 	fmt.Println(linkedList.CountUsingLoop())
 	fmt.Println(linkedList.SumUsingLoop())
 	fmt.Println(linkedList.SumUsingRecursion())
-	fmt.Println(linkedList.Max())
+	fmt.Println(linkedList.MaxUsingLoop())
+	fmt.Println(linkedList.MaxUsingRecursion())
 }

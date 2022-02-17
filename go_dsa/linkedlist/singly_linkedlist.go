@@ -1,6 +1,8 @@
 package linkedlist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	Data int
@@ -178,8 +180,8 @@ func (list *SinglyLinkedList) averageUsingRecursion(node *Node) int {
 /*
 	maximum Function
 */
-
-func (list *SinglyLinkedList) Max() int {
+// maximum function using loop
+func (list *SinglyLinkedList) MaxUsingLoop() int {
 	max := -1
 	if tmp := list.head; tmp != nil {
 		max = tmp.Data
@@ -193,3 +195,30 @@ func (list *SinglyLinkedList) Max() int {
 	}
 	return max
 }
+
+// maximum function using recursion
+func (list *SinglyLinkedList) MaxUsingRecursion() int {
+	if list.head == nil {
+		return -1
+	} else {
+		return list.maxUsingRecursion(list.head)
+	}
+}
+
+// maximum function using recursion, utils
+func (list *SinglyLinkedList) maxUsingRecursion(node *Node) int {
+	if node.Next == nil {
+		return node.Data
+	} else {
+		data := list.maxUsingRecursion(node.Next)
+		if data > node.Data {
+			return data
+		} else {
+			return node.Data
+		}
+	}
+}
+
+/*
+	maximum Function
+*/
