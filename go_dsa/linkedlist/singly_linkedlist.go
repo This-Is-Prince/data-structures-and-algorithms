@@ -265,3 +265,105 @@ func (list *SinglyLinkedList) minUsingRecursion(node *Node) int {
 		}
 	}
 }
+
+/*
+	search Function
+*/
+
+// linearSearch function using loop
+func (list *SinglyLinkedList) LinearSearchUsingLoop(key int) (*Node, error) {
+	if tmp := list.root; tmp != nil {
+		for tmp != nil {
+			if tmp.Data == key {
+				return tmp, nil
+			} else {
+				tmp = tmp.Next
+			}
+		}
+		return nil, errors.New("no element found in linkedlist")
+	} else {
+		return nil, errors.New("linkedlist is empty")
+	}
+}
+
+// linearSearch function using Recursion
+func (list *SinglyLinkedList) LinearSearchUsingRecursion(key int) (*Node, error) {
+	if list.root == nil {
+		return nil, errors.New("linkedlist is empty")
+	} else {
+		return list.linearSearchUsingRecursion(list.root, key)
+	}
+}
+
+// linearSearch function using Recursion, utils
+func (list *SinglyLinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, error) {
+	if node == nil {
+		return nil, errors.New("no element found in linkedlist")
+	} else {
+		if node.Data == key {
+			return node, nil
+		}
+		return list.linearSearchUsingRecursion(node.Next, key)
+	}
+}
+
+/*
+	insert Function
+*/
+
+// insert function using loop
+func (list *SinglyLinkedList) InsertUsingLoop(index int, key int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	}
+
+	if tmp := list.root; index == 0 {
+		list.root = &Node{key, nil}
+		list.root.Next = tmp
+		return nil
+	} else if tmp != nil {
+		for index != 1 && tmp != nil {
+			index--
+			tmp = tmp.Next
+		}
+		if tmp == nil {
+			return errors.New("index is invalid")
+		} else {
+			temp := tmp.Next
+			tmp.Next = &Node{key, nil}
+			tmp.Next.Next = temp
+			return nil
+		}
+	} else {
+		return errors.New("index is invalid")
+	}
+}
+
+// insert function using recursion
+func (list *SinglyLinkedList) InsertUsingRecursion(index int, key int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	} else if index == 0 {
+		tmp := list.root
+		list.root = &Node{key, nil}
+		list.root.Next = tmp
+		return nil
+	} else {
+		return list.insertUsingRecursion(list.root, index, key)
+	}
+}
+
+// insert function using recursion, utils
+func (list *SinglyLinkedList) insertUsingRecursion(node *Node, index int, key int) error {
+	if node == nil {
+		return errors.New("index is invalid")
+	} else {
+		if index == 1 {
+			tmp := node.Next
+			node.Next = &Node{key, nil}
+			node.Next.Next = tmp
+			return nil
+		}
+		return list.insertUsingRecursion(node.Next, index-1, key)
+	}
+}
