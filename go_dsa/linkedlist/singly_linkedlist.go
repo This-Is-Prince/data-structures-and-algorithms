@@ -367,3 +367,46 @@ func (list *SinglyLinkedList) insertUsingRecursion(node *Node, index int, key in
 		return list.insertUsingRecursion(node.Next, index-1, key)
 	}
 }
+
+/*
+	addFirst/addLast Function
+*/
+// addFirst function using loop
+func (list *SinglyLinkedList) AddFirst(key int) {
+	tmp := &Node{key, nil}
+	if list.root == nil {
+		list.root = tmp
+	} else {
+		tmp.Next = list.root
+		list.root = tmp
+	}
+}
+
+// addLast function using loop
+func (list *SinglyLinkedList) AddLastUsingLoop(key int) {
+	tmp := &Node{key, nil}
+	if list.root == nil {
+		list.root = tmp
+	} else {
+		temp := list.root
+		for temp.Next != nil {
+			temp = temp.Next
+		}
+		temp.Next = tmp
+	}
+}
+
+// addLast function using Recursion
+func (list *SinglyLinkedList) AddLastUsingRecursion(key int) {
+	list.root = list.addLastUsingRecursion(list.root, key)
+}
+
+// addLast function using Recursion, utils
+func (list *SinglyLinkedList) addLastUsingRecursion(node *Node, key int) *Node {
+	if node == nil {
+		return &Node{key, nil}
+	} else {
+		node.Next = list.addLastUsingRecursion(node.Next, key)
+		return node
+	}
+}
