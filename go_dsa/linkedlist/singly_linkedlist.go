@@ -410,3 +410,46 @@ func (list *SinglyLinkedList) addLastUsingRecursion(node *Node, key int) *Node {
 		return node
 	}
 }
+
+/*
+	insert in sorted linkedlist Function
+*/
+
+// insertInSortedList function using Loop
+func (list *SinglyLinkedList) InsertInSortedListUsingLoop(key int) {
+	newNode := &Node{key, nil}
+	if list.root == nil {
+		list.root = newNode
+	} else if list.root.Data >= key {
+		newNode.Next = list.root
+		list.root = newNode
+	} else {
+		temp := list.root
+		for temp.Next != nil && temp.Next.Data < key {
+			temp = temp.Next
+		}
+		newNode.Next = temp.Next
+		temp.Next = newNode
+	}
+}
+
+// insertInSortedList function using Recursion
+func (list *SinglyLinkedList) InsertInSortedListUsingRecursion(key int) {
+	list.root = list.insertInSortedListUsingRecursion(list.root, key)
+}
+
+// insertInSortedList function using Recursion, utils
+func (list *SinglyLinkedList) insertInSortedListUsingRecursion(node *Node, key int) *Node {
+	if list.root == nil {
+		return &Node{key, nil}
+	} else {
+		if node.Data < key {
+			node.Next = list.insertInSortedListUsingRecursion(node.Next, key)
+			return node
+		} else {
+			newNode := &Node{key, nil}
+			newNode.Next = node
+			return newNode
+		}
+	}
+}

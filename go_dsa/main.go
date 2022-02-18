@@ -10,7 +10,7 @@ func main() {
 
 	linkedList := linkedlist.SinglyLinkedList{}
 	// fmt.Println(linkedList)
-	linkedList.Create([]int{1, 2, 3, 4, 10, 9, 8, 5, 6}...)
+	linkedList.Create([]int{1, 3, 6, 7, 10, 15, 21, 44, 59, 66, 68, 100, 150}...)
 	// fmt.Println(linkedList)
 	// linkedList.DisplayUsingRecursion("-")
 	linkedList.DisplayUsingLoop(",")
@@ -42,8 +42,12 @@ func main() {
 	// 	fmt.Println(err)
 	// }
 
-	fmt.Println(linkedList.InsertUsingLoop(9, 200))
+	// fmt.Println(linkedList.InsertUsingLoop(9, 200))
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.InsertUsingRecursion(5, 300))
+	// linkedList.DisplayUsingLoop("-")
+
+	linkedList.InsertInSortedListUsingLoop(8)
 	linkedList.DisplayUsingLoop(",")
-	fmt.Println(linkedList.InsertUsingRecursion(5, 300))
-	linkedList.DisplayUsingLoop("-")
+
 }
