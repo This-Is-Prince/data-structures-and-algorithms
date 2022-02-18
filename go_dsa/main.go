@@ -50,4 +50,10 @@ func main() {
 	linkedList.InsertInSortedListUsingLoop(8)
 	linkedList.DisplayUsingLoop(",")
 
+	fmt.Println(linkedList.DeleteFirst())
+	fmt.Println(linkedList.DeleteLastUsingLoop())
+	fmt.Println(linkedList.DeleteLastUsingRecursion())
+	linkedList.DisplayUsingLoop(",")
+	fmt.Println(linkedList.DeleteUsingLoop(11))
+	linkedList.DisplayUsingLoop(",")
 }

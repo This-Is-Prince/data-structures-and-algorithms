@@ -453,3 +453,104 @@ func (list *SinglyLinkedList) insertInSortedListUsingRecursion(node *Node, key i
 		}
 	}
 }
+
+/*
+	deleting node Function
+*/
+// deleteFirst function using Loop
+func (list *SinglyLinkedList) DeleteFirst() error {
+	if list.root != nil {
+		list.root = list.root.Next
+		return nil
+	} else {
+		return errors.New("list is empty")
+	}
+}
+
+// deleteLast function using Loop
+func (list *SinglyLinkedList) DeleteLastUsingLoop() error {
+	if tmp := list.root; tmp != nil {
+		var last *Node
+		for tmp.Next != nil {
+			last = tmp
+			tmp = tmp.Next
+		}
+		if last == nil {
+			list.root = nil
+		} else {
+			last.Next = nil
+		}
+		return nil
+	} else {
+		return errors.New("list is empty")
+	}
+}
+
+// deleteLast function using Recursion
+func (list *SinglyLinkedList) DeleteLastUsingRecursion() error {
+	if list.root == nil {
+		return errors.New("list is empty")
+	} else {
+		list.root = list.deleteLastUsingRecursion(list.root)
+		return nil
+	}
+}
+
+// deleteLast function using Recursion, utils
+func (list *SinglyLinkedList) deleteLastUsingRecursion(node *Node) *Node {
+	if node.Next == nil {
+		return nil
+	} else {
+		node.Next = list.deleteLastUsingRecursion(node.Next)
+		return node
+	}
+}
+
+// delete function using Loop
+func (list *SinglyLinkedList) DeleteUsingLoop(index int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	} else if tmp := list.root; tmp != nil {
+		if index == 0 {
+			list.root = list.root.Next
+			return nil
+		} else {
+			for tmp.Next != nil && index != 1 {
+				tmp = tmp.Next
+				index--
+			}
+			if tmp.Next == nil {
+				return errors.New("index is invalid")
+			} else {
+				tmp.Next = tmp.Next.Next
+				return nil
+			}
+		}
+	} else {
+		return errors.New("list is empty")
+	}
+}
+
+// // delete function using Recursion
+// func (list *SinglyLinkedList) DeleteUsingRecursion(index int) error {
+// 	if index < 0 {
+// 		return errors.New("index is invalid")
+// 	}
+// 	if list.root == nil {
+// 		return errors.New("list is empty")
+// 	} else {
+// 		list.root = list.deleteUsingRecursion(list.root, index)
+// 		return nil
+// 	}
+// }
+
+// // delete function using Recursion, utils
+// func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) *Node {
+// 	if index == 0 {
+// 		return node.Next
+// 	}else if index==1{
+
+// 	}else{
+
+// 	}
+// }
