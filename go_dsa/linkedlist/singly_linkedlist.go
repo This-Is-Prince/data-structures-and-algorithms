@@ -557,3 +557,45 @@ func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) (*Node
 		return node, err
 	}
 }
+
+/*
+	isSorted Function
+*/
+// sorted function using loop
+func (list *SinglyLinkedList) IsSortedUsingLoop() (bool, error) {
+	isSorted := true
+	if node := list.root; node == nil {
+		return !isSorted, errors.New("list is empty")
+	} else {
+		for node.Next != nil {
+			if node.Data > node.Next.Data {
+				isSorted = false
+				break
+			}
+			node = node.Next
+		}
+		return isSorted, nil
+	}
+}
+
+// sorted function using Recursion
+func (list *SinglyLinkedList) IsSortedUsingRecursion() (bool, error) {
+	if list.root == nil {
+		return false, errors.New("list is empty")
+	} else {
+		return list.isSortedUsingRecursion(list.root)
+	}
+}
+
+// sorted function using Recursion, utils
+func (list *SinglyLinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
+	if node.Next == nil {
+		return true, nil
+	} else {
+		if node.Data < node.Next.Data {
+			return list.isSortedUsingRecursion(node.Next)
+		} else {
+			return false, nil
+		}
+	}
+}

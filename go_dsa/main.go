@@ -58,4 +58,7 @@ func main() {
 	// linkedList.DisplayUsingLoop(",")
 	// fmt.Println(linkedList.DeleteUsingRecursion(8))
 	// linkedList.DisplayUsingLoop(",")
+
+	fmt.Println(linkedList.IsSortedUsingLoop())
+	fmt.Println(linkedList.IsSortedUsingRecursion())
 }
