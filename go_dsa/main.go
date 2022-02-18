@@ -47,13 +47,15 @@ func main() {
 	// fmt.Println(linkedList.InsertUsingRecursion(5, 300))
 	// linkedList.DisplayUsingLoop("-")
 
-	linkedList.InsertInSortedListUsingLoop(8)
-	linkedList.DisplayUsingLoop(",")
+	// linkedList.InsertInSortedListUsingLoop(8)
+	// linkedList.DisplayUsingLoop(",")
 
-	fmt.Println(linkedList.DeleteFirst())
-	fmt.Println(linkedList.DeleteLastUsingLoop())
-	fmt.Println(linkedList.DeleteLastUsingRecursion())
-	linkedList.DisplayUsingLoop(",")
-	fmt.Println(linkedList.DeleteUsingLoop(11))
-	linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.DeleteFirst())
+	// fmt.Println(linkedList.DeleteLastUsingLoop())
+	// fmt.Println(linkedList.DeleteLastUsingRecursion())
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.DeleteUsingLoop(0))
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.DeleteUsingRecursion(8))
+	// linkedList.DisplayUsingLoop(",")
 }

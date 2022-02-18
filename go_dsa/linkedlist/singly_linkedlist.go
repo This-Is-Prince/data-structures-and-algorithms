@@ -531,26 +531,29 @@ func (list *SinglyLinkedList) DeleteUsingLoop(index int) error {
 	}
 }
 
-// // delete function using Recursion
-// func (list *SinglyLinkedList) DeleteUsingRecursion(index int) error {
-// 	if index < 0 {
-// 		return errors.New("index is invalid")
-// 	}
-// 	if list.root == nil {
-// 		return errors.New("list is empty")
-// 	} else {
-// 		list.root = list.deleteUsingRecursion(list.root, index)
-// 		return nil
-// 	}
-// }
+// delete function using Recursion
+func (list *SinglyLinkedList) DeleteUsingRecursion(index int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	}
+	if list.root == nil {
+		return errors.New("list is empty")
+	} else {
+		node, err := list.deleteUsingRecursion(list.root, index)
+		list.root = node
+		return err
+	}
+}
 
-// // delete function using Recursion, utils
-// func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) *Node {
-// 	if index == 0 {
-// 		return node.Next
-// 	}else if index==1{
-
-// 	}else{
-
-// 	}
-// }
+// delete function using Recursion, utils
+func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) (*Node, error) {
+	if node == nil {
+		return nil, errors.New("index is invalid")
+	} else if index == 0 {
+		return node.Next, nil
+	} else {
+		temp, err := list.deleteUsingRecursion(node.Next, index-1)
+		node.Next = temp
+		return node, err
+	}
+}
