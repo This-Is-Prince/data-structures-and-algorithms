@@ -64,6 +64,16 @@ func main() {
 
 	// fmt.Println(linkedList.RemoveDuplicateFromSortedListUsingLoop())
 	// linkedList.DisplayUsingLoop(",")
-	fmt.Println(linkedList.RemoveDuplicateFromSortedListUsingRecursion())
-	linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.RemoveDuplicateFromSortedListUsingRecursion())
+	// linkedList.DisplayUsingLoop(",")
+
+	// fmt.Println(linkedList.ReverseListUsingLoop())
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.ReverseListUsingRecursion())
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println()
+	// fmt.Println(linkedList.ReverseListUsingLoop())
+	// linkedList.DisplayUsingLoop(",")
+	// fmt.Println(linkedList.ReverseListUsingRecursion())
+	// linkedList.DisplayUsingLoop(",")
 }

@@ -643,3 +643,46 @@ func (list *SinglyLinkedList) removeDuplicateFromSortedListUsingRecursion(node *
 		}
 	}
 }
+
+/*
+	reversing linkedlist Function
+*/
+// reversing linkedlist function using loop
+func (list *SinglyLinkedList) ReverseListUsingLoop() error {
+	if curr := list.root; curr == nil {
+		return errors.New("list is empty")
+	} else {
+		var prev, next *Node
+		for curr != nil {
+			next = curr.Next
+			curr.Next = prev
+			prev = curr
+			curr = next
+		}
+		list.root = prev
+		return nil
+	}
+}
+
+// reversing linkedlist function using Recursion
+func (list *SinglyLinkedList) ReverseListUsingRecursion() error {
+	if list.root == nil {
+		return errors.New("list is empty")
+	} else {
+		list.reverseListUsingRecursion(list.root)
+		return nil
+	}
+}
+
+// reversing linkedlist function using Recursion, utils
+func (list *SinglyLinkedList) reverseListUsingRecursion(node *Node) *Node {
+	if node.Next == nil {
+		list.root = node
+		return node
+	} else {
+		tmp := list.reverseListUsingRecursion(node.Next)
+		node.Next = nil
+		tmp.Next = node
+		return node
+	}
+}
