@@ -599,3 +599,47 @@ func (list *SinglyLinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
 		}
 	}
 }
+
+/*
+	remove duplicate from sorted linkedlist Function
+*/
+// remove duplicate from sorted linkedlist function using loop
+func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingLoop() error {
+	if node := list.root; node == nil {
+		return errors.New("list is empty")
+	} else {
+		for node.Next != nil {
+			if node.Data == node.Next.Data {
+				node.Next = node.Next.Next
+			} else {
+				node = node.Next
+			}
+		}
+		return nil
+	}
+}
+
+// remove duplicate from sorted linkedlist function using Recursion
+func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingRecursion() error {
+	if list.root == nil {
+		return errors.New("list is empty")
+	} else {
+		list.root = list.removeDuplicateFromSortedListUsingRecursion(list.root)
+		return nil
+	}
+}
+
+// remove duplicate from sorted linkedlist function using Recursion, utils
+func (list *SinglyLinkedList) removeDuplicateFromSortedListUsingRecursion(node *Node) *Node {
+	if node.Next == nil {
+		return node
+	} else {
+		tmp := list.removeDuplicateFromSortedListUsingRecursion(node.Next)
+		if tmp.Data == node.Data {
+			return tmp
+		} else {
+			node.Next = tmp
+			return node
+		}
+	}
+}
