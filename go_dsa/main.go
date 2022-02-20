@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"go_dsa/linkedlist"
+	"go_dsa/linkedlist/singly"
 )
 
 func main() {
 	fmt.Println("Data Structures and Algorithms")
 
-	linkedList1 := linkedlist.SinglyLinkedList{}
-	linkedList2 := linkedlist.SinglyLinkedList{}
+	linkedList1 := singly.SinglyLinkedList{}
+	linkedList2 := singly.SinglyLinkedList{}
 
 	linkedList1.Create([]int{2, 6, 8, 9, 10, 15}...)
 	linkedList2.Create([]int{4, 7, 12, 14}...)
