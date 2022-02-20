@@ -29,7 +29,7 @@ func (list *LinkedList) Create(values ...int) {
 }
 
 /*
-All Display functions
+	display in sequential order functions
 */
 // Display function using loops
 func (list *LinkedList) DisplayUsingLoop(sep string) {
@@ -57,5 +57,46 @@ func (list *LinkedList) displayUsingRecursion(sep string, node *Node) {
 	} else {
 		fmt.Print(node.Data, sep)
 		list.displayUsingRecursion(sep, node.Next)
+	}
+}
+
+/*
+	display in reverse order functions
+*/
+// Display function using loops
+func (list *LinkedList) DisplayInReverseOrderUsingLoop(sep string) {
+	node := list.root
+	last := list.root
+	for {
+		for node.Next != last {
+			node = node.Next
+		}
+		last = node
+		if node == list.root {
+			fmt.Println(node.Data)
+			break
+		} else {
+			fmt.Print(node.Data, sep)
+			node = list.root
+		}
+	}
+}
+
+// Display function using recursion
+func (list *LinkedList) DisplayInReverseOrderUsingRecursion(sep string) {
+	list.displayInReverseOrderUsingRecursion(sep, list.root)
+}
+
+// Display function using recursion, utility
+func (list *LinkedList) displayInReverseOrderUsingRecursion(sep string, node *Node) {
+	if node.Next == list.root {
+		fmt.Print(node.Data, sep)
+	} else {
+		list.displayInReverseOrderUsingRecursion(sep, node.Next)
+		if node == list.root {
+			fmt.Println(node.Data)
+		} else {
+			fmt.Print(node.Data, sep)
+		}
 	}
 }
