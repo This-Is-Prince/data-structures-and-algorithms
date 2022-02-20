@@ -686,3 +686,33 @@ func (list *SinglyLinkedList) reverseListUsingRecursion(node *Node) *Node {
 		return node
 	}
 }
+
+/*
+	concating linkedlist Function
+*/
+// concating linkedlist function using loop
+func (list *SinglyLinkedList) ConcatUsingLoop(otherList SinglyLinkedList) {
+	if node := list.root; node == nil {
+		list.root = otherList.root
+	} else {
+		for node.Next != nil {
+			node = node.Next
+		}
+		node.Next = otherList.root
+	}
+}
+
+// concating linkedlist function using Recursion
+func (list *SinglyLinkedList) ConcatUsingRecursion(otherList SinglyLinkedList) {
+	list.root = list.concatUsingRecursion(otherList, list.root)
+}
+
+// concating linkedlist function using Recursion, utils
+func (list *SinglyLinkedList) concatUsingRecursion(otherList SinglyLinkedList, node *Node) *Node {
+	if node == nil {
+		return otherList.root
+	} else {
+		node.Next = list.concatUsingRecursion(otherList, node.Next)
+		return node
+	}
+}
