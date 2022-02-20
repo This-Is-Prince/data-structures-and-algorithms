@@ -27,6 +27,10 @@ func (list *SinglyLinkedList) Create(values ...int) {
 	}
 }
 
+func (list *SinglyLinkedList) GetRoot() *Node {
+	return list.root
+}
+
 /*
 All Display functions
 */
@@ -776,5 +780,49 @@ func (list *SinglyLinkedList) mergeUsingRecursion(first *Node, second *Node) *No
 		return first
 	} else {
 		return nil
+	}
+}
+
+/*
+	check loop in linkedlist Function
+*/
+// check loop in linkedlist Function using loop
+func (list *SinglyLinkedList) CheckLoopUsingLoop() (bool, error) {
+	if list.root == nil {
+		return false, errors.New("list is empty")
+	} else {
+		p := list.root
+		q := list.root
+		for q != nil && q.Next != nil {
+			p = p.Next
+			q = q.Next.Next
+			if p == q {
+				return true, nil
+			}
+		}
+		return false, nil
+	}
+}
+
+// check loop in linkedlist Function using Recursion
+func (list *SinglyLinkedList) CheckLoopUsingRecursion() (bool, error) {
+	if list.root == nil {
+		return false, errors.New("list is empty")
+	} else {
+		return list.checkLoopUsingRecursion(list.root, list.root)
+	}
+}
+
+// check loop in linkedlist Function using Recursion, utils
+func (list *SinglyLinkedList) checkLoopUsingRecursion(first *Node, second *Node) (bool, error) {
+	if first == nil || second == nil || second.Next == nil {
+		return false, nil
+	} else {
+		first = first.Next
+		second = second.Next.Next
+		if first == second {
+			return true, nil
+		}
+		return list.checkLoopUsingRecursion(first, second)
 	}
 }
