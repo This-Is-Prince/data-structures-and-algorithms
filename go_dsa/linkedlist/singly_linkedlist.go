@@ -691,7 +691,7 @@ func (list *SinglyLinkedList) reverseListUsingRecursion(node *Node) *Node {
 	concating linkedlist Function
 */
 // concating linkedlist function using loop
-func (list *SinglyLinkedList) ConcatUsingLoop(otherList SinglyLinkedList) {
+func (list *SinglyLinkedList) ConcatUsingLoop(otherList *SinglyLinkedList) {
 	if node := list.root; node == nil {
 		list.root = otherList.root
 	} else {
@@ -700,19 +700,81 @@ func (list *SinglyLinkedList) ConcatUsingLoop(otherList SinglyLinkedList) {
 		}
 		node.Next = otherList.root
 	}
+	otherList.root = nil
 }
 
 // concating linkedlist function using Recursion
-func (list *SinglyLinkedList) ConcatUsingRecursion(otherList SinglyLinkedList) {
+func (list *SinglyLinkedList) ConcatUsingRecursion(otherList *SinglyLinkedList) {
 	list.root = list.concatUsingRecursion(otherList, list.root)
+	otherList.root = nil
 }
 
 // concating linkedlist function using Recursion, utils
-func (list *SinglyLinkedList) concatUsingRecursion(otherList SinglyLinkedList, node *Node) *Node {
+func (list *SinglyLinkedList) concatUsingRecursion(otherList *SinglyLinkedList, node *Node) *Node {
 	if node == nil {
 		return otherList.root
 	} else {
 		node.Next = list.concatUsingRecursion(otherList, node.Next)
 		return node
+	}
+}
+
+/*
+	merging linkedlist Function
+*/
+// merging linkedlist function using loop
+func (list *SinglyLinkedList) MergeUsingLoop(otherList *SinglyLinkedList) {
+	second := otherList.root
+	if first := list.root; first == nil {
+		list.root = second
+	} else if second != nil {
+		var last *Node
+		if first.Data <= second.Data {
+			list.root = first
+			last = first
+			first = first.Next
+		} else {
+			list.root = second
+			last = second
+			second = second.Next
+		}
+		for first != nil && second != nil {
+			if first.Data <= second.Data {
+				last.Next = first
+				last = first
+				first = first.Next
+			} else {
+				last.Next = second
+				last = second
+				second = second.Next
+			}
+		}
+		if first == nil {
+			last.Next = second
+		} else {
+			last.Next = first
+		}
+	}
+	otherList.root = nil
+}
+
+// merging linkedlist function using Recursion
+func (list *SinglyLinkedList) MergeUsingRecursion(otherList *SinglyLinkedList) {
+	if list.root == nil {
+		list.root = otherList.root
+	} else if otherList.root != nil {
+		list.root = list.mergeUsingRecursion(list.root, otherList.root)
+	}
+	otherList.root = nil
+}
+
+// merging linkedlist function using Recursion, utils
+func (list *SinglyLinkedList) mergeUsingRecursion(first *Node, second *Node) *Node {
+	if first == nil {
+		return second
+	} else if second == nil {
+		return first
+	} else {
+		return nil
 	}
 }
