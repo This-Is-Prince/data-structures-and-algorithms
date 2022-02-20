@@ -10,11 +10,11 @@ type Node struct {
 	Next *Node
 }
 
-type SinglyLinkedList struct {
+type LinkedList struct {
 	root *Node
 }
 
-func (list *SinglyLinkedList) Create(values ...int) {
+func (list *LinkedList) Create(values ...int) {
 	var last *Node
 	for _, val := range values {
 		if list.root == nil {
@@ -27,7 +27,7 @@ func (list *SinglyLinkedList) Create(values ...int) {
 	}
 }
 
-func (list *SinglyLinkedList) GetRoot() *Node {
+func (list *LinkedList) GetRoot() *Node {
 	return list.root
 }
 
@@ -36,7 +36,7 @@ All Display functions
 */
 
 // Display function using loops
-func (list *SinglyLinkedList) DisplayUsingLoop(sep string) {
+func (list *LinkedList) DisplayUsingLoop(sep string) {
 	tmp := list.root
 	for tmp != nil {
 		if tmp.Next == nil {
@@ -48,7 +48,7 @@ func (list *SinglyLinkedList) DisplayUsingLoop(sep string) {
 	}
 }
 
-func (list *SinglyLinkedList) DisplayUsingLoopInReverseOrder(sep string) {
+func (list *LinkedList) DisplayUsingLoopInReverseOrder(sep string) {
 	tmp := list.root
 	var last *Node
 	for tmp != last {
@@ -66,15 +66,15 @@ func (list *SinglyLinkedList) DisplayUsingLoopInReverseOrder(sep string) {
 }
 
 // Display function using recursion
-func (list *SinglyLinkedList) DisplayUsingRecursion(sep string) {
+func (list *LinkedList) DisplayUsingRecursion(sep string) {
 	list.displayUsingRecursion(sep, list.root)
 }
-func (list *SinglyLinkedList) DisplayUsingRecursionInReverseOrder(sep string) {
+func (list *LinkedList) DisplayUsingRecursionInReverseOrder(sep string) {
 	list.displayUsingRecursionInReverseOrder(sep, list.root)
 }
 
 // Display function using recursions, utility function
-func (list *SinglyLinkedList) displayUsingRecursion(sep string, node *Node) {
+func (list *LinkedList) displayUsingRecursion(sep string, node *Node) {
 	if node == nil {
 		return
 	} else if node.Next == nil {
@@ -84,7 +84,7 @@ func (list *SinglyLinkedList) displayUsingRecursion(sep string, node *Node) {
 		list.displayUsingRecursion(sep, node.Next)
 	}
 }
-func (list *SinglyLinkedList) displayUsingRecursionInReverseOrder(sep string, node *Node) {
+func (list *LinkedList) displayUsingRecursionInReverseOrder(sep string, node *Node) {
 	if node == nil {
 		return
 	} else {
@@ -102,7 +102,7 @@ func (list *SinglyLinkedList) displayUsingRecursionInReverseOrder(sep string, no
 */
 
 // count function using loops
-func (list *SinglyLinkedList) CountUsingLoop() int {
+func (list *LinkedList) CountUsingLoop() int {
 	noOfNodes := 0
 	tmp := list.root
 	for tmp != nil {
@@ -113,12 +113,12 @@ func (list *SinglyLinkedList) CountUsingLoop() int {
 }
 
 // count function using recursion
-func (list *SinglyLinkedList) CountUsingRecursion() int {
+func (list *LinkedList) CountUsingRecursion() int {
 	return list.countUsingRecursion(list.root)
 }
 
 // count function using recursion, utils
-func (list *SinglyLinkedList) countUsingRecursion(node *Node) int {
+func (list *LinkedList) countUsingRecursion(node *Node) int {
 	if node == nil {
 		return 0
 	} else {
@@ -130,7 +130,7 @@ func (list *SinglyLinkedList) countUsingRecursion(node *Node) int {
 	sum Function
 */
 // sum function using loops
-func (list *SinglyLinkedList) SumUsingLoop() int {
+func (list *LinkedList) SumUsingLoop() int {
 	sum := 0
 	tmp := list.root
 	for tmp != nil {
@@ -141,12 +141,12 @@ func (list *SinglyLinkedList) SumUsingLoop() int {
 }
 
 // sum function using recursion
-func (list *SinglyLinkedList) SumUsingRecursion() int {
+func (list *LinkedList) SumUsingRecursion() int {
 	return list.sumUsingRecursion(list.root)
 }
 
 // sum function using recursion, utils
-func (list *SinglyLinkedList) sumUsingRecursion(node *Node) int {
+func (list *LinkedList) sumUsingRecursion(node *Node) int {
 	if node == nil {
 		return 0
 	} else {
@@ -158,7 +158,7 @@ func (list *SinglyLinkedList) sumUsingRecursion(node *Node) int {
 	average Function
 */
 // average function using loops
-func (list *SinglyLinkedList) AverageUsingLoop() float64 {
+func (list *LinkedList) AverageUsingLoop() float64 {
 	sum := 0
 	tmp := list.root
 	for tmp != nil {
@@ -169,12 +169,12 @@ func (list *SinglyLinkedList) AverageUsingLoop() float64 {
 }
 
 // average function using recursion
-func (list *SinglyLinkedList) AverageUsingRecursion() float64 {
+func (list *LinkedList) AverageUsingRecursion() float64 {
 	return float64(list.averageUsingRecursion(list.root) / list.CountUsingLoop())
 }
 
 // average function using recursion, utils
-func (list *SinglyLinkedList) averageUsingRecursion(node *Node) int {
+func (list *LinkedList) averageUsingRecursion(node *Node) int {
 	if node == nil {
 		return 0
 	} else {
@@ -186,7 +186,7 @@ func (list *SinglyLinkedList) averageUsingRecursion(node *Node) int {
 	maximum Function
 */
 // maximum function using loop
-func (list *SinglyLinkedList) MaxUsingLoop() (int, error) {
+func (list *LinkedList) MaxUsingLoop() (int, error) {
 	max := -1
 	if tmp := list.root; tmp != nil {
 		max = tmp.Data
@@ -204,7 +204,7 @@ func (list *SinglyLinkedList) MaxUsingLoop() (int, error) {
 }
 
 // maximum function using recursion
-func (list *SinglyLinkedList) MaxUsingRecursion() (int, error) {
+func (list *LinkedList) MaxUsingRecursion() (int, error) {
 	if list.root == nil {
 		return -1, errors.New("linkedlist is empty")
 	} else {
@@ -213,7 +213,7 @@ func (list *SinglyLinkedList) MaxUsingRecursion() (int, error) {
 }
 
 // maximum function using recursion, utils
-func (list *SinglyLinkedList) maxUsingRecursion(node *Node) int {
+func (list *LinkedList) maxUsingRecursion(node *Node) int {
 	if node.Next == nil {
 		return node.Data
 	} else {
@@ -230,7 +230,7 @@ func (list *SinglyLinkedList) maxUsingRecursion(node *Node) int {
 	minimum Function
 */
 // minimum function using loop
-func (list *SinglyLinkedList) MinUsingLoop() (int, error) {
+func (list *LinkedList) MinUsingLoop() (int, error) {
 	min := 0
 	if tmp := list.root; tmp != nil {
 		min = tmp.Data
@@ -248,7 +248,7 @@ func (list *SinglyLinkedList) MinUsingLoop() (int, error) {
 }
 
 // minimum function using recursion
-func (list *SinglyLinkedList) MinUsingRecursion() (int, error) {
+func (list *LinkedList) MinUsingRecursion() (int, error) {
 	if list.root == nil {
 		return 0, errors.New("linkedlist is empty")
 	} else {
@@ -257,7 +257,7 @@ func (list *SinglyLinkedList) MinUsingRecursion() (int, error) {
 }
 
 // minimum function using recursion, utils
-func (list *SinglyLinkedList) minUsingRecursion(node *Node) int {
+func (list *LinkedList) minUsingRecursion(node *Node) int {
 	if node.Next == nil {
 		return node.Data
 	} else {
@@ -275,7 +275,7 @@ func (list *SinglyLinkedList) minUsingRecursion(node *Node) int {
 */
 
 // linearSearch function using loop
-func (list *SinglyLinkedList) LinearSearchUsingLoop(key int) (*Node, error) {
+func (list *LinkedList) LinearSearchUsingLoop(key int) (*Node, error) {
 	if tmp := list.root; tmp != nil {
 		for tmp != nil {
 			if tmp.Data == key {
@@ -291,7 +291,7 @@ func (list *SinglyLinkedList) LinearSearchUsingLoop(key int) (*Node, error) {
 }
 
 // linearSearch function using Recursion
-func (list *SinglyLinkedList) LinearSearchUsingRecursion(key int) (*Node, error) {
+func (list *LinkedList) LinearSearchUsingRecursion(key int) (*Node, error) {
 	if list.root == nil {
 		return nil, errors.New("linkedlist is empty")
 	} else {
@@ -300,7 +300,7 @@ func (list *SinglyLinkedList) LinearSearchUsingRecursion(key int) (*Node, error)
 }
 
 // linearSearch function using Recursion, utils
-func (list *SinglyLinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, error) {
+func (list *LinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, error) {
 	if node == nil {
 		return nil, errors.New("no element found in linkedlist")
 	} else {
@@ -316,7 +316,7 @@ func (list *SinglyLinkedList) linearSearchUsingRecursion(node *Node, key int) (*
 */
 
 // insert function using loop
-func (list *SinglyLinkedList) InsertUsingLoop(index int, key int) error {
+func (list *LinkedList) InsertUsingLoop(index int, key int) error {
 	if index < 0 {
 		return errors.New("index is invalid")
 	}
@@ -344,7 +344,7 @@ func (list *SinglyLinkedList) InsertUsingLoop(index int, key int) error {
 }
 
 // insert function using recursion
-func (list *SinglyLinkedList) InsertUsingRecursion(index int, key int) error {
+func (list *LinkedList) InsertUsingRecursion(index int, key int) error {
 	if index < 0 {
 		return errors.New("index is invalid")
 	} else if index == 0 {
@@ -358,7 +358,7 @@ func (list *SinglyLinkedList) InsertUsingRecursion(index int, key int) error {
 }
 
 // insert function using recursion, utils
-func (list *SinglyLinkedList) insertUsingRecursion(node *Node, index int, key int) error {
+func (list *LinkedList) insertUsingRecursion(node *Node, index int, key int) error {
 	if node == nil {
 		return errors.New("index is invalid")
 	} else {
@@ -376,7 +376,7 @@ func (list *SinglyLinkedList) insertUsingRecursion(node *Node, index int, key in
 	addFirst/addLast Function
 */
 // addFirst function using loop
-func (list *SinglyLinkedList) AddFirst(key int) {
+func (list *LinkedList) AddFirst(key int) {
 	tmp := &Node{key, nil}
 	if list.root == nil {
 		list.root = tmp
@@ -387,7 +387,7 @@ func (list *SinglyLinkedList) AddFirst(key int) {
 }
 
 // addLast function using loop
-func (list *SinglyLinkedList) AddLastUsingLoop(key int) {
+func (list *LinkedList) AddLastUsingLoop(key int) {
 	tmp := &Node{key, nil}
 	if list.root == nil {
 		list.root = tmp
@@ -401,12 +401,12 @@ func (list *SinglyLinkedList) AddLastUsingLoop(key int) {
 }
 
 // addLast function using Recursion
-func (list *SinglyLinkedList) AddLastUsingRecursion(key int) {
+func (list *LinkedList) AddLastUsingRecursion(key int) {
 	list.root = list.addLastUsingRecursion(list.root, key)
 }
 
 // addLast function using Recursion, utils
-func (list *SinglyLinkedList) addLastUsingRecursion(node *Node, key int) *Node {
+func (list *LinkedList) addLastUsingRecursion(node *Node, key int) *Node {
 	if node == nil {
 		return &Node{key, nil}
 	} else {
@@ -420,7 +420,7 @@ func (list *SinglyLinkedList) addLastUsingRecursion(node *Node, key int) *Node {
 */
 
 // insertInSortedList function using Loop
-func (list *SinglyLinkedList) InsertInSortedListUsingLoop(key int) {
+func (list *LinkedList) InsertInSortedListUsingLoop(key int) {
 	newNode := &Node{key, nil}
 	if list.root == nil {
 		list.root = newNode
@@ -438,12 +438,12 @@ func (list *SinglyLinkedList) InsertInSortedListUsingLoop(key int) {
 }
 
 // insertInSortedList function using Recursion
-func (list *SinglyLinkedList) InsertInSortedListUsingRecursion(key int) {
+func (list *LinkedList) InsertInSortedListUsingRecursion(key int) {
 	list.root = list.insertInSortedListUsingRecursion(list.root, key)
 }
 
 // insertInSortedList function using Recursion, utils
-func (list *SinglyLinkedList) insertInSortedListUsingRecursion(node *Node, key int) *Node {
+func (list *LinkedList) insertInSortedListUsingRecursion(node *Node, key int) *Node {
 	if list.root == nil {
 		return &Node{key, nil}
 	} else {
@@ -462,7 +462,7 @@ func (list *SinglyLinkedList) insertInSortedListUsingRecursion(node *Node, key i
 	deleting node Function
 */
 // deleteFirst function using Loop
-func (list *SinglyLinkedList) DeleteFirst() error {
+func (list *LinkedList) DeleteFirst() error {
 	if list.root != nil {
 		list.root = list.root.Next
 		return nil
@@ -472,7 +472,7 @@ func (list *SinglyLinkedList) DeleteFirst() error {
 }
 
 // deleteLast function using Loop
-func (list *SinglyLinkedList) DeleteLastUsingLoop() error {
+func (list *LinkedList) DeleteLastUsingLoop() error {
 	if tmp := list.root; tmp != nil {
 		var last *Node
 		for tmp.Next != nil {
@@ -491,7 +491,7 @@ func (list *SinglyLinkedList) DeleteLastUsingLoop() error {
 }
 
 // deleteLast function using Recursion
-func (list *SinglyLinkedList) DeleteLastUsingRecursion() error {
+func (list *LinkedList) DeleteLastUsingRecursion() error {
 	if list.root == nil {
 		return errors.New("list is empty")
 	} else {
@@ -501,7 +501,7 @@ func (list *SinglyLinkedList) DeleteLastUsingRecursion() error {
 }
 
 // deleteLast function using Recursion, utils
-func (list *SinglyLinkedList) deleteLastUsingRecursion(node *Node) *Node {
+func (list *LinkedList) deleteLastUsingRecursion(node *Node) *Node {
 	if node.Next == nil {
 		return nil
 	} else {
@@ -511,7 +511,7 @@ func (list *SinglyLinkedList) deleteLastUsingRecursion(node *Node) *Node {
 }
 
 // delete function using Loop
-func (list *SinglyLinkedList) DeleteUsingLoop(index int) error {
+func (list *LinkedList) DeleteUsingLoop(index int) error {
 	if index < 0 {
 		return errors.New("index is invalid")
 	} else if tmp := list.root; tmp != nil {
@@ -536,7 +536,7 @@ func (list *SinglyLinkedList) DeleteUsingLoop(index int) error {
 }
 
 // delete function using Recursion
-func (list *SinglyLinkedList) DeleteUsingRecursion(index int) error {
+func (list *LinkedList) DeleteUsingRecursion(index int) error {
 	if index < 0 {
 		return errors.New("index is invalid")
 	}
@@ -550,7 +550,7 @@ func (list *SinglyLinkedList) DeleteUsingRecursion(index int) error {
 }
 
 // delete function using Recursion, utils
-func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) (*Node, error) {
+func (list *LinkedList) deleteUsingRecursion(node *Node, index int) (*Node, error) {
 	if node == nil {
 		return nil, errors.New("index is invalid")
 	} else if index == 0 {
@@ -566,7 +566,7 @@ func (list *SinglyLinkedList) deleteUsingRecursion(node *Node, index int) (*Node
 	isSorted Function
 */
 // sorted function using loop
-func (list *SinglyLinkedList) IsSortedUsingLoop() (bool, error) {
+func (list *LinkedList) IsSortedUsingLoop() (bool, error) {
 	isSorted := true
 	if node := list.root; node == nil {
 		return !isSorted, errors.New("list is empty")
@@ -583,7 +583,7 @@ func (list *SinglyLinkedList) IsSortedUsingLoop() (bool, error) {
 }
 
 // sorted function using Recursion
-func (list *SinglyLinkedList) IsSortedUsingRecursion() (bool, error) {
+func (list *LinkedList) IsSortedUsingRecursion() (bool, error) {
 	if list.root == nil {
 		return false, errors.New("list is empty")
 	} else {
@@ -592,7 +592,7 @@ func (list *SinglyLinkedList) IsSortedUsingRecursion() (bool, error) {
 }
 
 // sorted function using Recursion, utils
-func (list *SinglyLinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
+func (list *LinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
 	if node.Next == nil {
 		return true, nil
 	} else {
@@ -608,7 +608,7 @@ func (list *SinglyLinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
 	remove duplicate from sorted linkedlist Function
 */
 // remove duplicate from sorted linkedlist function using loop
-func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingLoop() error {
+func (list *LinkedList) RemoveDuplicateFromSortedListUsingLoop() error {
 	if node := list.root; node == nil {
 		return errors.New("list is empty")
 	} else {
@@ -624,7 +624,7 @@ func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingLoop() error {
 }
 
 // remove duplicate from sorted linkedlist function using Recursion
-func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingRecursion() error {
+func (list *LinkedList) RemoveDuplicateFromSortedListUsingRecursion() error {
 	if list.root == nil {
 		return errors.New("list is empty")
 	} else {
@@ -634,7 +634,7 @@ func (list *SinglyLinkedList) RemoveDuplicateFromSortedListUsingRecursion() erro
 }
 
 // remove duplicate from sorted linkedlist function using Recursion, utils
-func (list *SinglyLinkedList) removeDuplicateFromSortedListUsingRecursion(node *Node) *Node {
+func (list *LinkedList) removeDuplicateFromSortedListUsingRecursion(node *Node) *Node {
 	if node.Next == nil {
 		return node
 	} else {
@@ -652,7 +652,7 @@ func (list *SinglyLinkedList) removeDuplicateFromSortedListUsingRecursion(node *
 	reversing linkedlist Function
 */
 // reversing linkedlist function using loop
-func (list *SinglyLinkedList) ReverseListUsingLoop() error {
+func (list *LinkedList) ReverseListUsingLoop() error {
 	if curr := list.root; curr == nil {
 		return errors.New("list is empty")
 	} else {
@@ -669,7 +669,7 @@ func (list *SinglyLinkedList) ReverseListUsingLoop() error {
 }
 
 // reversing linkedlist function using Recursion
-func (list *SinglyLinkedList) ReverseListUsingRecursion() error {
+func (list *LinkedList) ReverseListUsingRecursion() error {
 	if list.root == nil {
 		return errors.New("list is empty")
 	} else {
@@ -679,7 +679,7 @@ func (list *SinglyLinkedList) ReverseListUsingRecursion() error {
 }
 
 // reversing linkedlist function using Recursion, utils
-func (list *SinglyLinkedList) reverseListUsingRecursion(node *Node) *Node {
+func (list *LinkedList) reverseListUsingRecursion(node *Node) *Node {
 	if node.Next == nil {
 		list.root = node
 		return node
@@ -695,7 +695,7 @@ func (list *SinglyLinkedList) reverseListUsingRecursion(node *Node) *Node {
 	concating linkedlist Function
 */
 // concating linkedlist function using loop
-func (list *SinglyLinkedList) ConcatUsingLoop(otherList *SinglyLinkedList) {
+func (list *LinkedList) ConcatUsingLoop(otherList *LinkedList) {
 	if node := list.root; node == nil {
 		list.root = otherList.root
 	} else {
@@ -708,13 +708,13 @@ func (list *SinglyLinkedList) ConcatUsingLoop(otherList *SinglyLinkedList) {
 }
 
 // concating linkedlist function using Recursion
-func (list *SinglyLinkedList) ConcatUsingRecursion(otherList *SinglyLinkedList) {
+func (list *LinkedList) ConcatUsingRecursion(otherList *LinkedList) {
 	list.root = list.concatUsingRecursion(otherList, list.root)
 	otherList.root = nil
 }
 
 // concating linkedlist function using Recursion, utils
-func (list *SinglyLinkedList) concatUsingRecursion(otherList *SinglyLinkedList, node *Node) *Node {
+func (list *LinkedList) concatUsingRecursion(otherList *LinkedList, node *Node) *Node {
 	if node == nil {
 		return otherList.root
 	} else {
@@ -727,7 +727,7 @@ func (list *SinglyLinkedList) concatUsingRecursion(otherList *SinglyLinkedList, 
 	merging linkedlist Function
 */
 // merging linkedlist function using loop
-func (list *SinglyLinkedList) MergeUsingLoop(otherList *SinglyLinkedList) {
+func (list *LinkedList) MergeUsingLoop(otherList *LinkedList) {
 	second := otherList.root
 	if first := list.root; first == nil {
 		list.root = second
@@ -763,7 +763,7 @@ func (list *SinglyLinkedList) MergeUsingLoop(otherList *SinglyLinkedList) {
 }
 
 // merging linkedlist function using Recursion
-func (list *SinglyLinkedList) MergeUsingRecursion(otherList *SinglyLinkedList) {
+func (list *LinkedList) MergeUsingRecursion(otherList *LinkedList) {
 	if list.root == nil {
 		list.root = otherList.root
 	} else if otherList.root != nil {
@@ -773,7 +773,7 @@ func (list *SinglyLinkedList) MergeUsingRecursion(otherList *SinglyLinkedList) {
 }
 
 // merging linkedlist function using Recursion, utils
-func (list *SinglyLinkedList) mergeUsingRecursion(first *Node, second *Node) *Node {
+func (list *LinkedList) mergeUsingRecursion(first *Node, second *Node) *Node {
 	if first == nil {
 		return second
 	} else if second == nil {
@@ -791,7 +791,7 @@ func (list *SinglyLinkedList) mergeUsingRecursion(first *Node, second *Node) *No
 	check loop in linkedlist Function
 */
 // check loop in linkedlist Function using loop
-func (list *SinglyLinkedList) CheckLoopUsingLoop() (bool, error) {
+func (list *LinkedList) CheckLoopUsingLoop() (bool, error) {
 	if list.root == nil {
 		return false, errors.New("list is empty")
 	} else {
@@ -809,7 +809,7 @@ func (list *SinglyLinkedList) CheckLoopUsingLoop() (bool, error) {
 }
 
 // check loop in linkedlist Function using Recursion
-func (list *SinglyLinkedList) CheckLoopUsingRecursion() (bool, error) {
+func (list *LinkedList) CheckLoopUsingRecursion() (bool, error) {
 	if list.root == nil {
 		return false, errors.New("list is empty")
 	} else {
@@ -818,7 +818,7 @@ func (list *SinglyLinkedList) CheckLoopUsingRecursion() (bool, error) {
 }
 
 // check loop in linkedlist Function using Recursion, utils
-func (list *SinglyLinkedList) checkLoopUsingRecursion(first *Node, second *Node) (bool, error) {
+func (list *LinkedList) checkLoopUsingRecursion(first *Node, second *Node) (bool, error) {
 	if first == nil || second == nil || second.Next == nil {
 		return false, nil
 	} else {
