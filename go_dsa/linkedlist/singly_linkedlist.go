@@ -778,8 +778,12 @@ func (list *SinglyLinkedList) mergeUsingRecursion(first *Node, second *Node) *No
 		return second
 	} else if second == nil {
 		return first
+	} else if first.Data <= second.Data {
+		first.Next = list.mergeUsingRecursion(first.Next, second)
+		return first
 	} else {
-		return nil
+		second.Next = list.mergeUsingRecursion(first, second.Next)
+		return second
 	}
 }
 
