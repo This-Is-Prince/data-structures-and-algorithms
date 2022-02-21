@@ -30,4 +30,20 @@ func main() {
 	fmt.Println(list1.MinUsingLoop())
 	fmt.Println(list1.MinUsingRecursion())
 	list1.DisplayUsingLoop(",")
+
+	node2, err2 := list1.LinearSearchUsingLoop(2)
+	if err2 == nil {
+		node2.Data = -node2.Data
+		fmt.Println(node2.Data)
+	} else {
+		fmt.Println(err2)
+	}
+	node40, err40 := list1.LinearSearchUsingRecursion(40)
+	if err40 == nil {
+		node40.Data = -node40.Data
+		fmt.Println(node40.Data)
+	} else {
+		fmt.Println(err40)
+	}
+	list1.DisplayUsingLoop(",")
 }

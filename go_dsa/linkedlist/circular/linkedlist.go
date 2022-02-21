@@ -269,3 +269,45 @@ func (list *LinkedList) minUsingRecursion(node *Node) int {
 		}
 	}
 }
+
+/*
+	search Function
+*/
+
+// linearSearch function using loop
+func (list *LinkedList) LinearSearchUsingLoop(key int) (*Node, error) {
+	if node := list.root; node != nil {
+		for {
+			if node.Data == key {
+				return node, nil
+			} else {
+				node = node.Next
+				if node == list.root {
+					return nil, errors.New("no element found in linkedlist")
+				}
+			}
+		}
+	} else {
+		return nil, errors.New("linkedlist is empty")
+	}
+}
+
+// linearSearch function using Recursion
+func (list *LinkedList) LinearSearchUsingRecursion(key int) (*Node, error) {
+	if list.root == nil {
+		return nil, errors.New("linkedlist is empty")
+	} else {
+		return list.linearSearchUsingRecursion(list.root, key)
+	}
+}
+
+// linearSearch function using Recursion, utils
+func (list *LinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, error) {
+	if node.Data == key {
+		return node, nil
+	} else if node.Next == list.root {
+		return nil, errors.New("no element found in linkedlist")
+	} else {
+		return list.linearSearchUsingRecursion(node.Next, key)
+	}
+}
