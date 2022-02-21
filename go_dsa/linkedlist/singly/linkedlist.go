@@ -159,12 +159,20 @@ func (list *LinkedList) sumUsingRecursion(node *Node) int {
 */
 // average function using loops
 func (list *LinkedList) AverageUsingLoop() float64 {
-	return float64(list.SumUsingLoop()) / float64(list.CountUsingLoop())
+	count := list.CountUsingLoop()
+	if count == 0 {
+		return 0.0
+	}
+	return float64(list.SumUsingLoop()) / float64(count)
 }
 
 // average function using recursion
 func (list *LinkedList) AverageUsingRecursion() float64 {
-	return float64(list.SumUsingRecursion()) / float64(list.CountUsingRecursion())
+	count := list.CountUsingRecursion()
+	if count == 0 {
+		return 0.0
+	}
+	return float64(list.SumUsingRecursion()) / float64(count)
 }
 
 /*

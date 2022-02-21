@@ -9,7 +9,7 @@ func main() {
 	fmt.Println("Data Structures and Algorithms")
 
 	list1 := circular.LinkedList{}
-	list1.Create([]int{1, 2, 3, 4}...)
+	list1.Create([]int{}...)
 	list1.DisplayUsingLoop(",")
 	fmt.Println(list1.CountUsingLoop())
 	fmt.Println(list1.CountUsingRecursion())
