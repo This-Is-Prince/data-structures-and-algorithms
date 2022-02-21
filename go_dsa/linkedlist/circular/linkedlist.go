@@ -777,3 +777,55 @@ func (list *LinkedList) concatUsingRecursion(otherList *LinkedList, node *Node) 
 	}
 	return node
 }
+
+/*
+	merging linkedlist Function
+*/
+// merging linkedlist function using loop
+func (list *LinkedList) MergeUsingLoop(otherList *LinkedList) {
+	if second := otherList.root; second != nil {
+		if first := list.root; first == nil {
+			list.root = second
+		} else {
+			var last, root *Node
+			if first.Data <= second.Data {
+				root = first
+				last = first
+				first = first.Next
+			} else {
+				root = second
+				last = second
+				second = second.Next
+			}
+			for {
+				if first.Data <= second.Data {
+					last.Next = first
+					last = first
+					first = first.Next
+				} else {
+					last.Next = second
+					last = second
+					second = second.Next
+				}
+				if first == list.root || second == otherList.root {
+					break
+				}
+			}
+			if first == list.root {
+				last.Next = second
+				for second.Next != otherList.root {
+					second = second.Next
+				}
+				second.Next = root
+			} else if second == otherList.root {
+				last.Next = first
+				for first.Next != list.root {
+					first = first.Next
+				}
+				first.Next = root
+			}
+			list.root = root
+		}
+		otherList.root = nil
+	}
+}

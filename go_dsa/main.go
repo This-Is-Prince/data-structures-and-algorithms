@@ -113,12 +113,19 @@ func main() {
 	// list1.DisplayUsingLoop(",")
 
 	list3 := circular.LinkedList{}
-	list3.Create([]int{10, 20, 30, 40}...)
+	list3.Create([]int{10, 20, 30, 30, 40}...)
+	fmt.Println("list3")
 	list3.DisplayUsingLoop(",")
 	list4 := circular.LinkedList{}
-	list4.Create([]int{15, 25, 35, 45}...)
+	list4.Create([]int{15, 45}...)
+	fmt.Println("list4")
 	list4.DisplayUsingLoop(",")
-	// list3.ConcatUsingLoop(&list4)
-	list3.ConcatUsingRecursion(&list4)
+	// // list3.ConcatUsingLoop(&list4)
+	// list3.ConcatUsingRecursion(&list4)
+	// list3.DisplayUsingLoop(",")
+
+	fmt.Println("mergelist")
+	list3.MergeUsingLoop(&list4)
 	list3.DisplayUsingLoop(",")
+
 }
