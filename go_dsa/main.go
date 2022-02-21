@@ -47,17 +47,25 @@ func main() {
 	// }
 	// list1.DisplayUsingLoop(",")
 
-	// fmt.Println(list1.InsertUsingLoop(0, 10))
-	// fmt.Println(list1.InsertUsingLoop(1, 11))
-	// fmt.Println(list1.InsertUsingLoop(2, 12))
-	// fmt.Println(list1.InsertUsingLoop(4, 15))
-	// fmt.Println(list1.InsertUsingLoop(9, 20))
+	fmt.Println(list1.InsertUsingLoop(0, 10))
+	fmt.Println(list1.InsertUsingLoop(1, 11))
+	fmt.Println(list1.InsertUsingLoop(2, 12))
+	fmt.Println(list1.InsertUsingLoop(4, 15))
+	fmt.Println(list1.InsertUsingLoop(9, 20))
+	list1.DisplayUsingLoop(",")
+
+	// fmt.Println(list1.InsertUsingRecursion(0, 10))
+	// fmt.Println(list1.InsertUsingRecursion(1, 11))
+	// fmt.Println(list1.InsertUsingRecursion(2, 12))
+	// fmt.Println(list1.InsertUsingRecursion(4, 15))
+	// fmt.Println(list1.InsertUsingRecursion(9, 20))
 	// list1.DisplayUsingLoop(",")
 
-	fmt.Println(list1.InsertUsingRecursion(0, 10))
-	fmt.Println(list1.InsertUsingRecursion(1, 11))
-	fmt.Println(list1.InsertUsingRecursion(2, 12))
-	fmt.Println(list1.InsertUsingRecursion(4, 15))
-	fmt.Println(list1.InsertUsingRecursion(9, 20))
+	list1.AddFirst(20)
+	list1.AddLastUsingLoop(21)
+	list1.AddLastUsingRecursion(22)
+	list1.AddLastUsingLoop(211)
+	list1.AddFirst(200)
 	list1.DisplayUsingLoop(",")
+
 }

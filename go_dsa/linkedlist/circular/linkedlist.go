@@ -326,38 +326,24 @@ func (list *LinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, 
 
 // insert function using loop
 func (list *LinkedList) InsertUsingLoop(index int, key int) error {
-	if index < 0 {
+	if index < 0 || (list.root == nil && index > 0) {
 		return errors.New("index is invalid")
 	}
-	newNode := &Node{key, nil}
-	if node := list.root; node == nil {
-		if index == 0 {
-			list.root = newNode
-			newNode.Next = newNode
-			return nil
-		} else {
-			return errors.New("index is invalid")
-		}
+	if index == 0 {
+		list.AddFirst(key)
 	} else {
-		if index == 0 {
-			for node.Next != list.root {
-				node = node.Next
+		node := list.root
+		newNode := &Node{key, nil}
+		for i := 0; i < index-1; i++ {
+			node = node.Next
+			if node == list.root {
+				return errors.New("index is invalid")
 			}
-			newNode.Next = list.root
-			list.root = newNode
-			node.Next = list.root
-		} else {
-			for i := 0; i < index-1; i++ {
-				node = node.Next
-				if node == list.root {
-					return errors.New("index is invalid")
-				}
-			}
-			newNode.Next = node.Next
-			node.Next = newNode
 		}
-		return nil
+		newNode.Next = node.Next
+		node.Next = newNode
 	}
+	return nil
 }
 
 // insert function using recursion
@@ -365,17 +351,7 @@ func (list *LinkedList) InsertUsingRecursion(index int, key int) error {
 	if index < 0 || (list.root == nil && index > 0) {
 		return errors.New("index is invalid")
 	} else if index == 0 {
-		newNode := &Node{key, nil}
-		if node := list.root; node == nil {
-			newNode.Next = newNode
-		} else {
-			for node.Next != list.root {
-				node = node.Next
-			}
-			node.Next = newNode
-			newNode.Next = list.root
-		}
-		list.root = newNode
+		list.AddFirst(key)
 		return nil
 	} else {
 		return list.insertUsingRecursion(list.root, index, key)
@@ -393,5 +369,62 @@ func (list *LinkedList) insertUsingRecursion(node *Node, index int, key int) err
 		return errors.New("index is invalid")
 	} else {
 		return list.insertUsingRecursion(node.Next, index-1, key)
+	}
+}
+
+/*
+	addFirst/addLast Function
+*/
+// addFirst function using loop
+func (list *LinkedList) AddFirst(key int) {
+	newNode := &Node{key, nil}
+	if list.root == nil {
+		newNode.Next = newNode
+	} else {
+		node := list.root
+		for node.Next != list.root {
+			node = node.Next
+		}
+		node.Next = newNode
+		newNode.Next = list.root
+	}
+	list.root = newNode
+}
+
+// addLast function using loop
+func (list *LinkedList) AddLastUsingLoop(key int) {
+	newNode := &Node{key, nil}
+	if list.root == nil {
+		newNode.Next = newNode
+		list.root = newNode
+	} else {
+		node := list.root
+		for node.Next != list.root {
+			node = node.Next
+		}
+		newNode.Next = node.Next
+		node.Next = newNode
+	}
+}
+
+// addLast function using Recursion
+func (list *LinkedList) AddLastUsingRecursion(key int) {
+	if list.root == nil {
+		newNode := &Node{key, nil}
+		newNode.Next = newNode
+		list.root = newNode
+	} else {
+		list.addLastUsingRecursion(list.root, key)
+	}
+}
+
+// addLast function using Recursion, utils
+func (list *LinkedList) addLastUsingRecursion(node *Node, key int) {
+	if node.Next == list.root {
+		newNode := &Node{key, nil}
+		newNode.Next = node.Next
+		node.Next = newNode
+	} else {
+		list.addLastUsingRecursion(node.Next, key)
 	}
 }
