@@ -319,3 +319,79 @@ func (list *LinkedList) linearSearchUsingRecursion(node *Node, key int) (*Node, 
 		return list.linearSearchUsingRecursion(node.Next, key)
 	}
 }
+
+/*
+	insert Function
+*/
+
+// insert function using loop
+func (list *LinkedList) InsertUsingLoop(index int, key int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	}
+	newNode := &Node{key, nil}
+	if node := list.root; node == nil {
+		if index == 0 {
+			list.root = newNode
+			newNode.Next = newNode
+			return nil
+		} else {
+			return errors.New("index is invalid")
+		}
+	} else {
+		if index == 0 {
+			for node.Next != list.root {
+				node = node.Next
+			}
+			newNode.Next = list.root
+			list.root = newNode
+			node.Next = list.root
+		} else {
+			for i := 0; i < index-1; i++ {
+				node = node.Next
+				if node == list.root {
+					return errors.New("index is invalid")
+				}
+			}
+			newNode.Next = node.Next
+			node.Next = newNode
+		}
+		return nil
+	}
+}
+
+// insert function using recursion
+func (list *LinkedList) InsertUsingRecursion(index int, key int) error {
+	if index < 0 || (list.root == nil && index > 0) {
+		return errors.New("index is invalid")
+	} else if index == 0 {
+		newNode := &Node{key, nil}
+		if node := list.root; node == nil {
+			newNode.Next = newNode
+		} else {
+			for node.Next != list.root {
+				node = node.Next
+			}
+			node.Next = newNode
+			newNode.Next = list.root
+		}
+		list.root = newNode
+		return nil
+	} else {
+		return list.insertUsingRecursion(list.root, index, key)
+	}
+}
+
+// insert function using recursion, utils
+func (list *LinkedList) insertUsingRecursion(node *Node, index int, key int) error {
+	if index == 1 {
+		newNode := &Node{key, nil}
+		newNode.Next = node.Next
+		node.Next = newNode
+		return nil
+	} else if node.Next == list.root {
+		return errors.New("index is invalid")
+	} else {
+		return list.insertUsingRecursion(node.Next, index-1, key)
+	}
+}
