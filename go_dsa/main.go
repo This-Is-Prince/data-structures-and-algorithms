@@ -92,10 +92,14 @@ func main() {
 	// fmt.Println(list1.DeleteUsingLoop(1))
 	// list1.DisplayUsingLoop(",")
 
-	fmt.Println(list1.DeleteUsingRecursion(-1))
-	fmt.Println(list1.DeleteUsingRecursion(0))
-	fmt.Println(list1.DeleteUsingRecursion(2))
-	fmt.Println(list1.DeleteUsingRecursion(1))
-	fmt.Println(list1.DeleteUsingRecursion(1))
+	// fmt.Println(list1.DeleteUsingRecursion(-1))
+	// fmt.Println(list1.DeleteUsingRecursion(0))
+	// fmt.Println(list1.DeleteUsingRecursion(2))
+	// fmt.Println(list1.DeleteUsingRecursion(1))
+	// fmt.Println(list1.DeleteUsingRecursion(1))
+	// list1.DisplayUsingLoop(",")
+
+	fmt.Println(list1.IsSortedUsingLoop())
+	fmt.Println(list1.IsSortedUsingRecursion())
 	list1.DisplayUsingLoop(",")
 }

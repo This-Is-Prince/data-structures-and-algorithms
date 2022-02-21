@@ -590,3 +590,45 @@ func (list *LinkedList) deleteUsingRecursion(node *Node, index int) error {
 	}
 	return nil
 }
+
+/*
+	isSorted Function
+*/
+// sorted function using loop
+func (list *LinkedList) IsSortedUsingLoop() (bool, error) {
+	isSorted := true
+	if node := list.root; node == nil {
+		return !isSorted, errors.New("list is empty")
+	} else {
+		for node.Next != list.root {
+			if node.Data > node.Next.Data {
+				isSorted = false
+				break
+			}
+			node = node.Next
+		}
+		return isSorted, nil
+	}
+}
+
+// sorted function using Recursion
+func (list *LinkedList) IsSortedUsingRecursion() (bool, error) {
+	if list.root == nil {
+		return false, errors.New("list is empty")
+	} else {
+		return list.isSortedUsingRecursion(list.root)
+	}
+}
+
+// sorted function using Recursion, utils
+func (list *LinkedList) isSortedUsingRecursion(node *Node) (bool, error) {
+	if node.Next == list.root {
+		return true, nil
+	} else {
+		if node.Data < node.Next.Data {
+			return list.isSortedUsingRecursion(node.Next)
+		} else {
+			return false, nil
+		}
+	}
+}
