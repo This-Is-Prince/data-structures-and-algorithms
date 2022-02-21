@@ -9,7 +9,7 @@ func main() {
 	fmt.Println("Data Structures and Algorithms")
 
 	list1 := circular.LinkedList{}
-	list1.Create([]int{1, 2, 3, 4}...)
+	list1.Create([]int{10, 20, 30, 40}...)
 	list1.DisplayUsingLoop(",")
 	// fmt.Println(list1.CountUsingLoop())
 	// fmt.Println(list1.CountUsingRecursion())
@@ -47,12 +47,12 @@ func main() {
 	// }
 	// list1.DisplayUsingLoop(",")
 
-	fmt.Println(list1.InsertUsingLoop(0, 10))
-	fmt.Println(list1.InsertUsingLoop(1, 11))
-	fmt.Println(list1.InsertUsingLoop(2, 12))
-	fmt.Println(list1.InsertUsingLoop(4, 15))
-	fmt.Println(list1.InsertUsingLoop(9, 20))
-	list1.DisplayUsingLoop(",")
+	// fmt.Println(list1.InsertUsingLoop(0, 10))
+	// fmt.Println(list1.InsertUsingLoop(1, 11))
+	// fmt.Println(list1.InsertUsingLoop(2, 12))
+	// fmt.Println(list1.InsertUsingLoop(4, 15))
+	// fmt.Println(list1.InsertUsingLoop(9, 20))
+	// list1.DisplayUsingLoop(",")
 
 	// fmt.Println(list1.InsertUsingRecursion(0, 10))
 	// fmt.Println(list1.InsertUsingRecursion(1, 11))
@@ -61,11 +61,22 @@ func main() {
 	// fmt.Println(list1.InsertUsingRecursion(9, 20))
 	// list1.DisplayUsingLoop(",")
 
-	list1.AddFirst(20)
-	list1.AddLastUsingLoop(21)
-	list1.AddLastUsingRecursion(22)
-	list1.AddLastUsingLoop(211)
-	list1.AddFirst(200)
-	list1.DisplayUsingLoop(",")
+	// list1.AddFirst(20)
+	// list1.AddLastUsingLoop(21)
+	// list1.AddLastUsingRecursion(22)
+	// list1.AddLastUsingLoop(211)
+	// list1.AddFirst(200)
+	// list1.DisplayUsingLoop(",")
 
+	// list1.InsertInSortedListUsingLoop(5)
+	// list1.InsertInSortedListUsingLoop(50)
+	// list1.InsertInSortedListUsingLoop(15)
+	// list1.InsertInSortedListUsingLoop(35)
+	// list1.DisplayUsingLoop(",")
+
+	list1.InsertInSortedListUsingRecursion(5)
+	list1.InsertInSortedListUsingRecursion(50)
+	list1.InsertInSortedListUsingRecursion(15)
+	list1.InsertInSortedListUsingRecursion(35)
+	list1.DisplayUsingLoop(",")
 }

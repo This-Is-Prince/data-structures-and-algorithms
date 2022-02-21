@@ -428,3 +428,49 @@ func (list *LinkedList) addLastUsingRecursion(node *Node, key int) {
 		list.addLastUsingRecursion(node.Next, key)
 	}
 }
+
+/*
+	insert in sorted linkedlist Function
+*/
+
+// insertInSortedList function using Loop
+func (list *LinkedList) InsertInSortedListUsingLoop(key int) {
+	newNode := &Node{key, nil}
+	if list.root == nil {
+		newNode.Next = newNode
+		list.root = newNode
+	} else if list.root.Data >= key {
+		list.AddFirst(key)
+	} else {
+		node := list.root
+		for node.Next != list.root && node.Next.Data < key {
+			node = node.Next
+		}
+		newNode.Next = node.Next
+		node.Next = newNode
+	}
+}
+
+// insertInSortedList function using Recursion
+func (list *LinkedList) InsertInSortedListUsingRecursion(key int) {
+	if list.root == nil {
+		newNode := &Node{key, nil}
+		newNode.Next = newNode
+		list.root = newNode
+	} else if list.root.Data >= key {
+		list.AddFirst(key)
+	} else {
+		list.insertInSortedListUsingRecursion(list.root, key)
+	}
+}
+
+// insertInSortedList function using Recursion, utils
+func (list *LinkedList) insertInSortedListUsingRecursion(node *Node, key int) {
+	if node.Next == list.root || node.Next.Data >= key {
+		newNode := &Node{key, nil}
+		newNode.Next = node.Next
+		node.Next = newNode
+	} else {
+		list.insertInSortedListUsingRecursion(node.Next, key)
+	}
+}
