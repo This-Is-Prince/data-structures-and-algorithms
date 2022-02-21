@@ -8,9 +8,9 @@ import (
 func main() {
 	fmt.Println("Data Structures and Algorithms")
 
-	list1 := circular.LinkedList{}
-	list1.Create([]int{10, 20, 30, 40}...)
-	list1.DisplayUsingLoop(",")
+	// list1 := circular.LinkedList{}
+	// list1.Create([]int{10, 20, 30, 40}...)
+	// list1.DisplayUsingLoop(",")
 	// fmt.Println(list1.CountUsingLoop())
 	// fmt.Println(list1.CountUsingRecursion())
 	// list1.DisplayUsingLoop(",")
@@ -107,8 +107,18 @@ func main() {
 	// fmt.Println(list1.RemoveDuplicateFromSortedListUsingRecursion())
 	// list1.DisplayUsingLoop(",")
 
-	fmt.Println(list1.ReverseListUsingLoop())
-	list1.DisplayUsingLoop(",")
-	fmt.Println(list1.ReverseListUsingRecursion())
-	list1.DisplayUsingLoop(",")
+	// fmt.Println(list1.ReverseListUsingLoop())
+	// list1.DisplayUsingLoop(",")
+	// fmt.Println(list1.ReverseListUsingRecursion())
+	// list1.DisplayUsingLoop(",")
+
+	list3 := circular.LinkedList{}
+	list3.Create([]int{10, 20, 30, 40}...)
+	list3.DisplayUsingLoop(",")
+	list4 := circular.LinkedList{}
+	list4.Create([]int{15, 25, 35, 45}...)
+	list4.DisplayUsingLoop(",")
+	// list3.ConcatUsingLoop(&list4)
+	list3.ConcatUsingRecursion(&list4)
+	list3.DisplayUsingLoop(",")
 }

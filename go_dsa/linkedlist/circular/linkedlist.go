@@ -725,3 +725,55 @@ func (list *LinkedList) reverseListUsingRecursion(node *Node) *Node {
 		return node
 	}
 }
+
+/*
+	concating linkedlist Function
+*/
+// concating linkedlist function using loop
+func (list *LinkedList) ConcatUsingLoop(otherList *LinkedList) {
+	if otherList.root != nil {
+		if node := list.root; node == nil {
+			list.root = otherList.root
+		} else {
+			oNode := otherList.root
+			for node.Next != list.root || oNode.Next != otherList.root {
+				if node.Next != list.root {
+					node = node.Next
+				}
+				if oNode.Next != otherList.root {
+					oNode = oNode.Next
+				}
+			}
+			node.Next = otherList.root
+			oNode.Next = list.root
+		}
+		otherList.root = nil
+	}
+}
+
+// concating linkedlist function using Recursion
+func (list *LinkedList) ConcatUsingRecursion(otherList *LinkedList) {
+	if otherList.root != nil {
+		if list.root == nil {
+			list.root = otherList.root
+		} else {
+			list.root = list.concatUsingRecursion(otherList, list.root)
+		}
+		otherList.root = nil
+	}
+}
+
+// concating linkedlist function using Recursion, utils
+func (list *LinkedList) concatUsingRecursion(otherList *LinkedList, node *Node) *Node {
+	if node.Next == list.root {
+		oNode := otherList.root
+		for oNode.Next != otherList.root {
+			oNode = oNode.Next
+		}
+		oNode.Next = list.root
+		node.Next = otherList.root
+	} else {
+		node.Next = list.concatUsingRecursion(otherList, node.Next)
+	}
+	return node
+}
