@@ -474,3 +474,119 @@ func (list *LinkedList) insertInSortedListUsingRecursion(node *Node, key int) {
 		list.insertInSortedListUsingRecursion(node.Next, key)
 	}
 }
+
+/*
+	deleting node Function
+*/
+// deleteFirst function using Loop
+func (list *LinkedList) DeleteFirst() error {
+	if node := list.root; node != nil {
+		if node == node.Next {
+			list.root = nil
+		} else {
+			for node.Next != list.root {
+				node = node.Next
+			}
+			root := list.root
+			node.Next = root.Next
+			list.root = root.Next
+			root.Next = nil
+		}
+		return nil
+	} else {
+		return errors.New("list is empty")
+	}
+}
+
+// deleteLast function using Loop
+func (list *LinkedList) DeleteLastUsingLoop() error {
+	if node := list.root; node != nil {
+		var last *Node
+		for node.Next != list.root {
+			last = node
+			node = node.Next
+		}
+		if last == nil {
+			list.root = nil
+		} else {
+			last.Next = list.root
+		}
+		return nil
+	} else {
+		return errors.New("list is empty")
+	}
+}
+
+// deleteLast function using Recursion
+func (list *LinkedList) DeleteLastUsingRecursion() error {
+	if list.root == nil {
+		return errors.New("list is empty")
+	}
+	if list.root == list.root.Next {
+		list.root = nil
+	} else {
+		list.root = list.deleteLastUsingRecursion(list.root)
+	}
+	return nil
+}
+
+// deleteLast function using Recursion, utils
+func (list *LinkedList) deleteLastUsingRecursion(node *Node) *Node {
+	if node.Next == list.root {
+		return list.root
+	} else {
+		node.Next = list.deleteLastUsingRecursion(node.Next)
+		return node
+	}
+}
+
+// delete function using Loop
+func (list *LinkedList) DeleteUsingLoop(index int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	}
+	if index == 0 {
+		return list.DeleteFirst()
+	}
+	if node := list.root; node == nil {
+		return errors.New("list is empty")
+	} else {
+		var last *Node
+		for i := 0; i < index; i++ {
+			last = node
+			node = node.Next
+			if node == list.root {
+				return errors.New("index is invalid")
+			}
+		}
+		last.Next = node.Next
+		return nil
+	}
+}
+
+// delete function using Recursion
+func (list *LinkedList) DeleteUsingRecursion(index int) error {
+	if index < 0 {
+		return errors.New("index is invalid")
+	}
+	if index == 0 {
+		return list.DeleteFirst()
+	}
+	if list.root == nil {
+		return errors.New("list is empty")
+	} else {
+		return list.deleteUsingRecursion(list.root, index)
+	}
+}
+
+// delete function using Recursion, utils
+func (list *LinkedList) deleteUsingRecursion(node *Node, index int) error {
+	if node.Next == list.root {
+		return errors.New("index is invalid")
+	} else if index == 1 {
+		node.Next = node.Next.Next
+	} else {
+		list.deleteUsingRecursion(node.Next, index-1)
+	}
+	return nil
+}

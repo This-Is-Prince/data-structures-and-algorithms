@@ -74,9 +74,28 @@ func main() {
 	// list1.InsertInSortedListUsingLoop(35)
 	// list1.DisplayUsingLoop(",")
 
-	list1.InsertInSortedListUsingRecursion(5)
-	list1.InsertInSortedListUsingRecursion(50)
-	list1.InsertInSortedListUsingRecursion(15)
-	list1.InsertInSortedListUsingRecursion(35)
+	// list1.InsertInSortedListUsingRecursion(5)
+	// list1.InsertInSortedListUsingRecursion(50)
+	// list1.InsertInSortedListUsingRecursion(15)
+	// list1.InsertInSortedListUsingRecursion(35)
+	// list1.DisplayUsingLoop(",")
+
+	// list1.DeleteFirst()
+	// list1.DeleteLastUsingLoop()
+	// list1.DeleteLastUsingRecursion()
+	// list1.DisplayUsingLoop(",")
+
+	// fmt.Println(list1.DeleteUsingLoop(-1))
+	// fmt.Println(list1.DeleteUsingLoop(0))
+	// fmt.Println(list1.DeleteUsingLoop(2))
+	// fmt.Println(list1.DeleteUsingLoop(1))
+	// fmt.Println(list1.DeleteUsingLoop(1))
+	// list1.DisplayUsingLoop(",")
+
+	fmt.Println(list1.DeleteUsingRecursion(-1))
+	fmt.Println(list1.DeleteUsingRecursion(0))
+	fmt.Println(list1.DeleteUsingRecursion(2))
+	fmt.Println(list1.DeleteUsingRecursion(1))
+	fmt.Println(list1.DeleteUsingRecursion(1))
 	list1.DisplayUsingLoop(",")
 }
