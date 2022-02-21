@@ -103,7 +103,12 @@ func main() {
 	// fmt.Println(list1.IsSortedUsingRecursion())
 	// list1.DisplayUsingLoop(",")
 
-	fmt.Println(list1.RemoveDuplicateFromSortedListUsingLoop())
-	fmt.Println(list1.RemoveDuplicateFromSortedListUsingRecursion())
+	// fmt.Println(list1.RemoveDuplicateFromSortedListUsingLoop())
+	// fmt.Println(list1.RemoveDuplicateFromSortedListUsingRecursion())
+	// list1.DisplayUsingLoop(",")
+
+	fmt.Println(list1.ReverseListUsingLoop())
+	list1.DisplayUsingLoop(",")
+	fmt.Println(list1.ReverseListUsingRecursion())
 	list1.DisplayUsingLoop(",")
 }
