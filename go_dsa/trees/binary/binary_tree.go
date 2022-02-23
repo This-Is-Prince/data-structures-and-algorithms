@@ -1,6 +1,9 @@
 package binary
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Node struct {
 	Data  int
@@ -15,32 +18,51 @@ type BinaryTree struct {
 /*
 	Creating tree using given values array
 */
-func (tree *BinaryTree) Create(values []int) {
+func (tree *BinaryTree) Create(values []int, nilValue int) error {
 	n := len(values)
-	nodes := make([]*Node, n)
+	if n > 0 {
+		if values[0] == nilValue {
+			return errors.New("invalid tree nodes")
+		}
+		nodes := []*Node{}
 
-	for index, value := range values {
-		nodes[index] = &Node{value, nil, nil}
-	}
+		root := &Node{values[0], nil, nil}
+		tree.root = root
+		side, index, value := "left", 1, 0
 
-	index, leftIndex, rightIndex := 0, 0, 0
-
-	for index < n {
-		if index == 0 {
-			tree.root = nodes[index]
+		for index < n {
+			if side == "other" {
+				if len(nodes) == 0 {
+					return errors.New("invalid tree nodes")
+				}
+				root = nodes[0]
+				nodes = nodes[1:]
+				side = "left"
+			}
+			value = values[index]
+			if value != nilValue {
+				newNode := &Node{value, nil, nil}
+				if side == "left" {
+					root.Left = newNode
+					nodes = append(nodes, newNode)
+					side = "right"
+				} else {
+					root.Right = newNode
+					nodes = append(nodes, newNode)
+					side = "other"
+				}
+			} else {
+				if side == "left" {
+					side = "right"
+				} else {
+					side = "other"
+				}
+			}
+			index++
 		}
-		leftIndex = index*2 + 1
-		rightIndex = index*2 + 2
-		if leftIndex < n {
-			nodes[index].Left = nodes[leftIndex]
-		}
-		if rightIndex < n {
-			nodes[index].Right = nodes[rightIndex]
-		}
-		if leftIndex >= n && rightIndex >= n {
-			break
-		}
-		index++
+		return nil
+	} else {
+		return errors.New("there is no values")
 	}
 }
 
@@ -54,6 +76,7 @@ func (tree *BinaryTree) PreOrderUsingRecursion(sep string) {
 	fmt.Println()
 }
 
+// Preorder Traversals using recursion, utils
 func (tree *BinaryTree) preOrderUsingRecursion(sep string, node *Node) {
 	if node == nil {
 		return
@@ -70,6 +93,7 @@ func (tree *BinaryTree) PostOrderUsingRecursion(sep string) {
 	fmt.Println()
 }
 
+// Postorder Traversals using recursion, utils
 func (tree *BinaryTree) postOrderUsingRecursion(sep string, node *Node) {
 	if node == nil {
 		return
@@ -86,6 +110,7 @@ func (tree *BinaryTree) InOrderUsingRecursion(sep string) {
 	fmt.Println()
 }
 
+// InOrder Traversals using recursion, utils
 func (tree *BinaryTree) inOrderUsingRecursion(sep string, node *Node) {
 	if node == nil {
 		return
