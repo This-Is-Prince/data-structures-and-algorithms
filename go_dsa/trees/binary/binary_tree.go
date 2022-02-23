@@ -24,41 +24,30 @@ func (tree *BinaryTree) Create(values []int, nilValue int) error {
 		if values[0] == nilValue {
 			return errors.New("invalid tree nodes")
 		}
-		nodes := []*Node{}
-
 		root := &Node{values[0], nil, nil}
 		tree.root = root
-		side, index, value := "left", 1, 0
+		nodes := []*Node{root}
+		index, value := 1, 0
 
-		for index < n {
-			if side == "other" {
-				if len(nodes) == 0 {
-					return errors.New("invalid tree nodes")
-				}
-				root = nodes[0]
-				nodes = nodes[1:]
-				side = "left"
-			}
+		for index < n && len(nodes) != 0 {
+			root = nodes[0]
+			nodes = nodes[1:]
+
 			value = values[index]
 			if value != nilValue {
-				newNode := &Node{value, nil, nil}
-				if side == "left" {
-					root.Left = newNode
-					nodes = append(nodes, newNode)
-					side = "right"
-				} else {
-					root.Right = newNode
-					nodes = append(nodes, newNode)
-					side = "other"
-				}
-			} else {
-				if side == "left" {
-					side = "right"
-				} else {
-					side = "other"
-				}
+				root.Left = &Node{value, nil, nil}
+				nodes = append(nodes, root.Left)
 			}
 			index++
+
+			if index < n {
+				value = values[index]
+				if value != nilValue {
+					root.Right = &Node{value, nil, nil}
+					nodes = append(nodes, root.Right)
+				}
+				index++
+			}
 		}
 		return nil
 	} else {
@@ -143,4 +132,23 @@ func (tree *BinaryTree) LevelOrderUsingLoop(sep string) {
 			fmt.Print(root.Data, sep)
 		}
 	}
+}
+
+// InOrder Traversals using Loops
+func (tree *BinaryTree) InOrderUsingLoop(sep string) {
+	stk := []*Node{}
+	curr := tree.root
+	for len(stk) != 0 || curr != nil {
+		for curr != nil {
+			stk = append(stk, curr)
+			curr = curr.Left
+		}
+
+		n := len(stk)
+		curr = stk[n-1]
+		stk = stk[:n-1]
+		fmt.Print(curr.Data, sep)
+		curr = curr.Right
+	}
+	fmt.Println()
 }

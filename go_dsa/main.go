@@ -13,5 +13,6 @@ func main() {
 	binaryTree.PreOrderUsingRecursion(",")
 	binaryTree.PostOrderUsingRecursion(",")
 	binaryTree.InOrderUsingRecursion(",")
+	binaryTree.InOrderUsingLoop(",")
 	binaryTree.LevelOrderUsingLoop(",")
 }
