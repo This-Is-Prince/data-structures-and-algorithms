@@ -4,6 +4,7 @@ import (
 	"fmt"
 	// "go_dsa/trees/binary_tree"
 	"go_dsa/stack/using_array"
+	"go_dsa/stack/using_linkedlist"
 )
 
 func main() {
@@ -30,4 +31,12 @@ func main() {
 		stk.Display(",")
 	}
 
+	stk1 := using_linkedlist.Stack{}
+	stk1.Display(",")
+	stk1.Push(1)
+	stk1.Push(2)
+	stk1.Push(3)
+	stk1.Push(4)
+	stk1.Push(5)
+	stk1.Display(",")
 }

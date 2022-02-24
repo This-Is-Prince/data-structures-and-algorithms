@@ -65,8 +65,13 @@ func (stk *stack) IsFull() bool {
 }
 
 func (stk *stack) Display(sep string) {
-	for _, value := range stk.data {
-		fmt.Print(value, sep)
+	index := stk.top
+	for index >= 0 {
+		if index == 0 {
+			fmt.Println(stk.data[index])
+		} else {
+			fmt.Print(stk.data[index], sep)
+		}
+		index--
 	}
-	fmt.Println()
 }
