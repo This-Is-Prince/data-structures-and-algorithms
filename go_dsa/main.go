@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	// "go_dsa/trees/binary_tree"
+	questions "go_dsa/stack/questions/parenthesis_matching"
 	"go_dsa/stack/using_array"
 	"go_dsa/stack/using_linkedlist"
 )
@@ -39,4 +40,7 @@ func main() {
 	stk1.Push(4)
 	stk1.Push(5)
 	stk1.Display(",")
+
+	fmt.Println("Is '((a+b)*(c-d))' Balance", questions.IsBalance("((a+b)*(c-d))"))
+	fmt.Println("Is '((a+b)*(c-d)' Balance", questions.IsBalance("((a+b)*(c-d)"))
 }
