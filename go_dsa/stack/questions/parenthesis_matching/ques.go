@@ -7,15 +7,33 @@ import (
 func IsBalance(charString string) bool {
 	stk := Stack{}
 	for _, char := range strings.Split(charString, "") {
-		if char == "(" {
+		if char == "(" || char == "{" || char == "[" || char == "<" {
 			stk.Push(char)
-		} else if char == ")" {
+		} else if char == ")" || char == "}" || char == "]" || char == ">" {
 			if stk.IsEmpty() {
 				return false
 			}
-			_, err := stk.Pop()
+			value, err := stk.Pop()
 			if err != nil {
 				panic(err)
+			}
+			switch value {
+			case "(":
+				if char != ")" {
+					return false
+				}
+			case "{":
+				if char != "}" {
+					return false
+				}
+			case "[":
+				if char != "]" {
+					return false
+				}
+			case "<":
+				if char != ">" {
+					return false
+				}
 			}
 		}
 	}

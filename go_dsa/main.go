@@ -43,4 +43,9 @@ func main() {
 
 	fmt.Println("Is '((a+b)*(c-d))' Balance", questions.IsBalance("((a+b)*(c-d))"))
 	fmt.Println("Is '((a+b)*(c-d)' Balance", questions.IsBalance("((a+b)*(c-d)"))
+	fmt.Println("Is '((a+b)*(c-d)))' Balance", questions.IsBalance("((a+b)*(c-d)))"))
+	fmt.Println("Is '{([a+b]*[c-d])/e}' Balance", questions.IsBalance("{([a+b]*[c-d])/e}"))
+	fmt.Println("Is '{([a+b]*[c-d]/e}' Balance", questions.IsBalance("{([a+b]*[c-d]/e}"))
+	fmt.Println("Is '{([a+b]*[c-d)/e}' Balance", questions.IsBalance("{([a+b]*[c-d)/e}"))
+	fmt.Println("Is '{([a+b)*[c-d]]/e}' Balance", questions.IsBalance("{([a+b)*[c-d]]/e}"))
 }
