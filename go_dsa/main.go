@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 
-	queue_using_array "go_dsa/queues/linear/using_array"
+	circular_queue_using_array "go_dsa/queues/circular/using_array"
+	linear_queue_using_array "go_dsa/queues/linear/using_array"
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
 	stk_using_array "go_dsa/stack/using_array"
 	stk_using_linkedlist "go_dsa/stack/using_linkedlist"
@@ -17,6 +18,8 @@ func main() {
 	// debugStackUsingLinkedList()
 	// debugStackQuestions()
 	debugLinearQueueUsingArray()
+	fmt.Println("Circular queue")
+	debugCircularQueueUsingArray()
 	// debugBinaryTree()
 }
 
@@ -58,7 +61,7 @@ func debugStackQuestions() {
 }
 
 func debugLinearQueueUsingArray() {
-	q, err := queue_using_array.Create(5)
+	q, err := linear_queue_using_array.Create(5)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -82,6 +85,40 @@ func debugLinearQueueUsingArray() {
 	fmt.Println(q.DeQueue())
 	q.Display(",")
 	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.EnQueue(50))
+	fmt.Println(q.EnQueue(60))
+	q.Display(",")
+}
+
+func debugCircularQueueUsingArray() {
+	q, err := circular_queue_using_array.Create(5)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	q.Display(",")
+	fmt.Println(q.EnQueue(10))
+	fmt.Println(q.EnQueue(20))
+	fmt.Println(q.EnQueue(30))
+	fmt.Println(q.EnQueue(40))
+	fmt.Println(q.EnQueue(50))
+	fmt.Println(q.EnQueue(60))
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.EnQueue(50))
+	fmt.Println(q.EnQueue(60))
 	q.Display(",")
 }
 
