@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	circular_queue_using_array "go_dsa/queues/circular/using_array"
+	circular_queue_using_linkedlist "go_dsa/queues/circular/using_linkedlist"
 	linear_queue_using_array "go_dsa/queues/linear/using_array"
 	linear_queue_using_linkedlist "go_dsa/queues/linear/using_linkedlist"
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
@@ -19,9 +20,10 @@ func main() {
 	// debugStackUsingLinkedList()
 	// debugStackQuestions()
 	// debugLinearQueueUsingArray()
+	// debugLinearQueueUsingLinkedlist()
 	// fmt.Println("Circular queue")
 	// debugCircularQueueUsingArray()
-	debugLinearQueueUsingLinkedlist()
+	debugCircularQueueUsingLinkedlist()
 	// debugBinaryTree()
 }
 
@@ -93,6 +95,33 @@ func debugLinearQueueUsingArray() {
 	q.Display(",")
 }
 
+func debugLinearQueueUsingLinkedlist() {
+	q := linear_queue_using_linkedlist.Queue{}
+	fmt.Println(q.EnQueue(10))
+	q.Display(",")
+	fmt.Println(q.EnQueue(20))
+	q.Display(",")
+	fmt.Println(q.EnQueue(30))
+	q.Display(",")
+	fmt.Println(q.EnQueue(40))
+	q.Display(",")
+	fmt.Println(q.EnQueue(50))
+	q.Display(",")
+
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+	fmt.Println(q.DeQueue())
+	q.Display(",")
+}
+
 func debugCircularQueueUsingArray() {
 	q, err := circular_queue_using_array.Create(5)
 	if err != nil {
@@ -124,8 +153,8 @@ func debugCircularQueueUsingArray() {
 	q.Display(",")
 }
 
-func debugLinearQueueUsingLinkedlist() {
-	q := linear_queue_using_linkedlist.Queue{}
+func debugCircularQueueUsingLinkedlist() {
+	q := circular_queue_using_linkedlist.Queue{}
 	fmt.Println(q.EnQueue(10))
 	q.Display(",")
 	fmt.Println(q.EnQueue(20))
