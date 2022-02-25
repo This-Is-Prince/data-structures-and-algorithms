@@ -6,6 +6,7 @@ import (
 	circular_queue_using_array "go_dsa/queues/circular/using_array"
 	circular_queue_using_linkedlist "go_dsa/queues/circular/using_linkedlist"
 	dequeue_using_array "go_dsa/queues/double_ended/using_array"
+	dequeue_using_linkedlist "go_dsa/queues/double_ended/using_linkedlist"
 	linear_queue_using_array "go_dsa/queues/linear/using_array"
 	linear_queue_using_linkedlist "go_dsa/queues/linear/using_linkedlist"
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
@@ -25,7 +26,8 @@ func main() {
 	// fmt.Println("Circular queue")
 	// debugCircularQueueUsingArray()
 	// debugCircularQueueUsingLinkedlist()
-	debugDoubleEndedQueueUsingArray()
+	// debugDoubleEndedQueueUsingArray()
+	debugDoubleEndedQueueUsingLinkedlist()
 	// debugBinaryTree()
 }
 
@@ -206,6 +208,43 @@ func debugDoubleEndedQueueUsingArray() {
 	fmt.Println(q.RemoveLast())
 	q.Display(",")
 	fmt.Println(q.RemoveFirst())
+	q.Display(",")
+
+	fmt.Println(q.AddFirst(10))
+	q.Display(",")
+	fmt.Println(q.AddFirst(20))
+	q.Display(",")
+	fmt.Println(q.AddFirst(30))
+	q.Display(",")
+	fmt.Println(q.AddFirst(40))
+	q.Display(",")
+	fmt.Println(q.AddFirst(50))
+	q.Display(",")
+}
+
+func debugDoubleEndedQueueUsingLinkedlist() {
+	q := dequeue_using_linkedlist.Queue{}
+
+	fmt.Println(q.AddLast(10))
+	q.Display(",")
+	fmt.Println(q.AddLast(20))
+	q.Display(",")
+	fmt.Println(q.AddLast(30))
+	q.Display(",")
+	fmt.Println(q.AddLast(40))
+	q.Display(",")
+	fmt.Println(q.AddLast(50))
+	q.Display(",")
+
+	fmt.Println(q.RemoveLast())
+	q.Display(",")
+	fmt.Println(q.RemoveLast())
+	q.Display(",")
+	fmt.Println(q.RemoveLast())
+	q.Display(",")
+	fmt.Println(q.RemoveFirst())
+	q.Display(",")
+	fmt.Println(q.RemoveLast())
 	q.Display(",")
 
 	fmt.Println(q.AddFirst(10))
