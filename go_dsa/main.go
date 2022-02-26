@@ -13,7 +13,8 @@ import (
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
 	stk_using_array "go_dsa/stack/using_array"
 	stk_using_linkedlist "go_dsa/stack/using_linkedlist"
-	"go_dsa/trees/binary_tree"
+	binary_search_tree "go_dsa/trees/binary_search"
+	binary_tree "go_dsa/trees/binary_tree"
 )
 
 func main() {
@@ -30,7 +31,8 @@ func main() {
 	// debugDoubleEndedQueueUsingArray()
 	// debugDoubleEndedQueueUsingLinkedlist()
 	// debugQueueUsing2Stack()
-	debugBinaryTree()
+	// debugBinaryTree()
+	debugBinarySearchTree()
 }
 
 func debugStackUsingArray() {
@@ -313,4 +315,49 @@ func debugBinaryTree() {
 	fmt.Println(binaryTree.Height())
 	fmt.Println(binaryTree.CountLeafNode())
 	fmt.Println(binaryTree.CountNonLeafNode())
+}
+
+func debugBinarySearchTree() {
+	binarySearchTree := binary_search_tree.BinarySearchTree{}
+	// fmt.Println(binarySearchTree.CreateUsingLoop(10, 20, 30, 40, 50))
+	// fmt.Println(binarySearchTree.CreateUsingRecursion(10, 20, 30, 40, 50))
+
+	// fmt.Println(binarySearchTree.CreateUsingLoop(30, 50, 40, 20, 10, 5, 15, 45))
+	// fmt.Println(binarySearchTree.CreateUsingRecursion(30, 50, 40, 20, 10, 5, 15, 45))
+
+	// fmt.Println(binarySearchTree.CreateUsingLoop(30, 50, 40, 20, 10, 5, 5, 15, 45))
+	// fmt.Println(binarySearchTree.CreateUsingRecursion(30, 50, 40, 20, 10, 5,5, 15, 45))
+
+	// binarySearchTree.PreOrderUsingRecursion(",")
+	// binarySearchTree.InOrderUsingRecursion(",")
+	// binarySearchTree.PostOrderUsingRecursion(",")
+
+	// fmt.Println("Search Using Loop")
+	// fmt.Println(binarySearchTree.SearchUsingLoop(10))
+	// fmt.Println(binarySearchTree.SearchUsingLoop(11))
+	// fmt.Println(binarySearchTree.SearchUsingLoop(15))
+	// fmt.Println(binarySearchTree.SearchUsingLoop(-1))
+	// fmt.Println("Search Using Recursion")
+	// fmt.Println(binarySearchTree.SearchUsingRecursion(10))
+	// fmt.Println(binarySearchTree.SearchUsingRecursion(11))
+	// fmt.Println(binarySearchTree.SearchUsingRecursion(15))
+	// fmt.Println(binarySearchTree.SearchUsingRecursion(-1))
+
+	fmt.Println(binarySearchTree.CreateUsingLoop(9, 15, 5, 20, 16, 8, 12, 3, 6))
+	fmt.Println(binarySearchTree.CreateUsingRecursion(9, 15, 5, 20, 16, 8, 12, 3, 6))
+
+	binarySearchTree.PreOrderUsingRecursion(",")
+	binarySearchTree.InOrderUsingRecursion(",")
+	binarySearchTree.PostOrderUsingRecursion(",")
+
+	fmt.Println("Search Using Loop")
+	fmt.Println(binarySearchTree.SearchUsingLoop(9))
+	fmt.Println(binarySearchTree.SearchUsingLoop(1))
+	fmt.Println(binarySearchTree.SearchUsingLoop(16))
+	fmt.Println(binarySearchTree.SearchUsingLoop(-1))
+	fmt.Println("Search Using Recursion")
+	fmt.Println(binarySearchTree.SearchUsingRecursion(9))
+	fmt.Println(binarySearchTree.SearchUsingRecursion(1))
+	fmt.Println(binarySearchTree.SearchUsingRecursion(16))
+	fmt.Println(binarySearchTree.SearchUsingRecursion(-1))
 }
