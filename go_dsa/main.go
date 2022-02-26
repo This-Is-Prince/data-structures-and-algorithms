@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	heap "go_dsa/heap"
 	circular_queue_using_array "go_dsa/queues/circular/using_array"
 	circular_queue_using_linkedlist "go_dsa/queues/circular/using_linkedlist"
 	dequeue_using_array "go_dsa/queues/double_ended/using_array"
@@ -32,7 +33,8 @@ func main() {
 	// debugDoubleEndedQueueUsingLinkedlist()
 	// debugQueueUsing2Stack()
 	// debugBinaryTree()
-	debugBinarySearchTree()
+	// debugBinarySearchTree()
+	debugHeap()
 }
 
 func debugStackUsingArray() {
@@ -390,4 +392,28 @@ func debugBinarySearchTree() {
 	binarySearchTree.PreOrderUsingRecursion(",")
 	binarySearchTree.InOrderUsingRecursion(",")
 	binarySearchTree.PostOrderUsingRecursion(",")
+}
+
+func debugHeap() {
+	h := heap.Heap{}
+
+	// h.Display(",")
+	// h.Insert(10)
+	// h.Display(",")
+	// h.Insert(20)
+	// h.Display(",")
+	// h.Insert(30)
+	// h.Display(",")
+	// h.Insert(25)
+	// h.Display(",")
+	// h.Insert(5)
+	// h.Display(",")
+	// h.Insert(40)
+	// h.Display(",")
+	// h.Insert(35)
+	// h.Display(",")
+
+	h.Display(",")
+	h.Create(10, 20, 30, 25, 5, 40, 35)
+	h.Display(",")
 }
