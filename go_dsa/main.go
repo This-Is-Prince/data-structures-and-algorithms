@@ -29,8 +29,8 @@ func main() {
 	// debugCircularQueueUsingLinkedlist()
 	// debugDoubleEndedQueueUsingArray()
 	// debugDoubleEndedQueueUsingLinkedlist()
-	debugQueueUsing2Stack()
-	// debugBinaryTree()
+	// debugQueueUsing2Stack()
+	debugBinaryTree()
 }
 
 func debugStackUsingArray() {

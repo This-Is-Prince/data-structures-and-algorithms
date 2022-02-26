@@ -21,37 +21,35 @@ type BinaryTree struct {
 func (tree *BinaryTree) Create(values []int, nilValue int) error {
 	n := len(values)
 	if n > 0 {
+		q := &Queue{}
 		if values[0] == nilValue {
-			return errors.New("invalid tree nodes")
+			return errors.New("invalid tree root")
 		}
-		root := &Node{values[0], nil, nil}
-		tree.root = root
-		nodes := []*Node{root}
 		index, value := 1, 0
+		tree.root = (&Node{values[0], nil, nil})
+		q.EnQueue(tree.root)
 
-		for index < n && len(nodes) != 0 {
-			root = nodes[0]
-			nodes = nodes[1:]
-
+		for index < n && !q.IsEmpty() {
+			root, _ := q.DeQueue()
 			value = values[index]
-			if value != nilValue {
-				root.Left = &Node{value, nil, nil}
-				nodes = append(nodes, root.Left)
-			}
-			index++
 
-			if index < n {
-				value = values[index]
-				if value != nilValue {
-					root.Right = &Node{value, nil, nil}
-					nodes = append(nodes, root.Right)
-				}
-				index++
+			if value != nilValue {
+				root.Left = &Node{Data: value}
+				q.EnQueue(root.Left)
 			}
+
+			if index+1 < n {
+				value = values[index+1]
+				if value != nilValue {
+					root.Right = &Node{Data: value}
+					q.EnQueue(root.Right)
+				}
+			}
+			index += 2
 		}
 		return nil
 	} else {
-		return errors.New("there is no values")
+		return errors.New("tree is empty")
 	}
 }
 
@@ -112,43 +110,38 @@ func (tree *BinaryTree) inOrderUsingRecursion(sep string, node *Node) {
 
 // LevelOrder Traversals using Loop
 func (tree *BinaryTree) LevelOrderUsingLoop(sep string) {
-	nodes := []*Node{}
-	nodes = append(nodes, tree.root)
-	n := len(nodes)
-	for n > 0 {
-		root := nodes[0]
-		nodes = nodes[1:]
-		if root.Left != nil {
-			nodes = append(nodes, root.Left)
-		}
-		if root.Right != nil {
-			nodes = append(nodes, root.Right)
-		}
-
-		n = len(nodes)
-		if n == 0 {
-			fmt.Println(root.Data)
-		} else {
-			fmt.Print(root.Data, sep)
+	if tree.root != nil {
+		q := &Queue{}
+		q.EnQueue(tree.root)
+		for !q.IsEmpty() {
+			root, _ := q.DeQueue()
+			if root.Left != nil {
+				q.EnQueue(root.Left)
+			}
+			if root.Right != nil {
+				q.EnQueue(root.Right)
+			}
+			if q.IsEmpty() {
+				fmt.Println(root.Data)
+			} else {
+				fmt.Print(root.Data, sep)
+			}
 		}
 	}
 }
 
 // InOrder Traversals using Loops
 func (tree *BinaryTree) InOrderUsingLoop(sep string) {
-	stk := []*Node{}
-	curr := tree.root
-	for len(stk) != 0 || curr != nil {
-		for curr != nil {
-			stk = append(stk, curr)
-			curr = curr.Left
+	stk := &Stack{}
+	root := tree.root
+	for !stk.IsEmpty() || root != nil {
+		for root != nil {
+			stk.Push(root)
+			root = root.Left
 		}
-
-		n := len(stk)
-		curr = stk[n-1]
-		stk = stk[:n-1]
-		fmt.Print(curr.Data, sep)
-		curr = curr.Right
+		root, _ = stk.Pop()
+		fmt.Print(root.Data, sep)
+		root = root.Right
 	}
 	fmt.Println()
 }
