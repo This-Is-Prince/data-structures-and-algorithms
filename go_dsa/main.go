@@ -395,7 +395,7 @@ func debugBinarySearchTree() {
 }
 
 func debugHeap() {
-	h := heap.Heap{}
+	h := heap.Heap{Which: heap.MIN}
 
 	// h.Display(",")
 	// h.Insert(10)

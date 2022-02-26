@@ -2,8 +2,15 @@ package heap
 
 import "fmt"
 
+const (
+	MAX = "max"
+	MIN = "min"
+)
+
 type Heap struct {
-	data []int
+	Which   string
+	data    []int
+	cmpFunc func(int, int) bool
 }
 
 func (heap *Heap) Create(values ...int) {
@@ -14,11 +21,21 @@ func (heap *Heap) Create(values ...int) {
 
 func (heap *Heap) Insert(value int) {
 	if heap.data == nil {
+		if heap.Which == MIN {
+			heap.cmpFunc = func(child, parent int) bool {
+				return child < parent
+			}
+		} else {
+			heap.Which = MAX
+			heap.cmpFunc = func(child, parent int) bool {
+				return child > parent
+			}
+		}
 		heap.data = []int{0}
 	}
 	heap.data = append(heap.data, value)
 	index := len(heap.data) - 1
-	for index > 1 && value > heap.data[index/2] {
+	for index > 1 && heap.cmpFunc(value, heap.data[index/2]) {
 		heap.data[index] = heap.data[index/2]
 		index = index / 2
 	}
