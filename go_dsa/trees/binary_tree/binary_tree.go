@@ -59,58 +59,59 @@ func (tree *BinaryTree) Create(values []int, nilValue int) error {
 
 // Preorder Traversals using recursion
 func (tree *BinaryTree) PreOrderUsingRecursion(sep string) {
-	tree.preOrderUsingRecursion(sep, tree.root)
-	fmt.Println()
+	values := []int{}
+	values = tree.preOrderUsingRecursion(values, sep, tree.root)
+	tree.print(values, sep)
 }
 
 // Preorder Traversals using recursion, utils
-func (tree *BinaryTree) preOrderUsingRecursion(sep string, node *Node) {
-	if node == nil {
-		return
-	} else {
-		fmt.Print(node.Data, sep)
-		tree.preOrderUsingRecursion(sep, node.Left)
-		tree.preOrderUsingRecursion(sep, node.Right)
+func (tree *BinaryTree) preOrderUsingRecursion(values []int, sep string, node *Node) []int {
+	if node != nil {
+		values = append(values, node.Data)
+		values = tree.preOrderUsingRecursion(values, sep, node.Left)
+		values = tree.preOrderUsingRecursion(values, sep, node.Right)
 	}
-}
-
-// Postorder Traversals using recursion
-func (tree *BinaryTree) PostOrderUsingRecursion(sep string) {
-	tree.postOrderUsingRecursion(sep, tree.root)
-	fmt.Println()
-}
-
-// Postorder Traversals using recursion, utils
-func (tree *BinaryTree) postOrderUsingRecursion(sep string, node *Node) {
-	if node == nil {
-		return
-	} else {
-		tree.postOrderUsingRecursion(sep, node.Left)
-		tree.postOrderUsingRecursion(sep, node.Right)
-		fmt.Print(node.Data, sep)
-	}
+	return values
 }
 
 // InOrder Traversals using recursion
 func (tree *BinaryTree) InOrderUsingRecursion(sep string) {
-	tree.inOrderUsingRecursion(sep, tree.root)
-	fmt.Println()
+	values := []int{}
+	values = tree.inOrderUsingRecursion(values, sep, tree.root)
+	tree.print(values, sep)
 }
 
 // InOrder Traversals using recursion, utils
-func (tree *BinaryTree) inOrderUsingRecursion(sep string, node *Node) {
-	if node == nil {
-		return
-	} else {
-		tree.inOrderUsingRecursion(sep, node.Left)
-		fmt.Print(node.Data, sep)
-		tree.inOrderUsingRecursion(sep, node.Right)
+func (tree *BinaryTree) inOrderUsingRecursion(values []int, sep string, node *Node) []int {
+	if node != nil {
+		values = tree.inOrderUsingRecursion(values, sep, node.Left)
+		values = append(values, node.Data)
+		values = tree.inOrderUsingRecursion(values, sep, node.Right)
 	}
+	return values
+}
+
+// Postorder Traversals using recursion
+func (tree *BinaryTree) PostOrderUsingRecursion(sep string) {
+	values := []int{}
+	values = tree.postOrderUsingRecursion(values, sep, tree.root)
+	tree.print(values, sep)
+}
+
+// Postorder Traversals using recursion, utils
+func (tree *BinaryTree) postOrderUsingRecursion(values []int, sep string, node *Node) []int {
+	if node != nil {
+		values = tree.postOrderUsingRecursion(values, sep, node.Left)
+		values = tree.postOrderUsingRecursion(values, sep, node.Right)
+		values = append(values, node.Data)
+	}
+	return values
 }
 
 // LevelOrder Traversals using Loop
 func (tree *BinaryTree) LevelOrderUsingLoop(sep string) {
 	if tree.root != nil {
+		values := []int{}
 		q := &Queue{}
 		q.EnQueue(tree.root)
 		for !q.IsEmpty() {
@@ -121,49 +122,68 @@ func (tree *BinaryTree) LevelOrderUsingLoop(sep string) {
 			if root.Right != nil {
 				q.EnQueue(root.Right)
 			}
-			if q.IsEmpty() {
-				fmt.Println(root.Data)
-			} else {
-				fmt.Print(root.Data, sep)
-			}
+			values = append(values, root.Data)
+		}
+		tree.print(values, sep)
+	}
+}
+
+// PreOrder Traversals using Loops
+func (tree *BinaryTree) PreOrderUsingLoop(sep string) {
+	stk := &Stack{}
+	root := tree.root
+	values := []int{}
+	for !stk.IsEmpty() || root != nil {
+		if root != nil {
+			values = append(values, root.Data)
+			stk.Push(root)
+			root = root.Left
+		} else {
+			root, _ = stk.Pop()
+			root = root.Right
 		}
 	}
+	tree.print(values, sep)
 }
 
 // InOrder Traversals using Loops
 func (tree *BinaryTree) InOrderUsingLoop(sep string) {
 	stk := &Stack{}
 	root := tree.root
+	values := []int{}
 	for !stk.IsEmpty() || root != nil {
-		for root != nil {
+		if root != nil {
 			stk.Push(root)
 			root = root.Left
+		} else {
+			root, _ = stk.Pop()
+			values = append(values, root.Data)
+			root = root.Right
 		}
-		root, _ = stk.Pop()
-		fmt.Print(root.Data, sep)
-		root = root.Right
 	}
-	fmt.Println()
+	tree.print(values, sep)
 }
 
-// PreOrder Traversals using Loops
-func (tree *BinaryTree) PreOrderUsingLoop(sep string) {
+// PostOrder Traversals using Loops
+func (tree *BinaryTree) PostOrderUsingLoop(sep string) {
 	if tree.root != nil {
 		stk := &Stack{}
 		stk.Push(tree.root)
-		for !stk.IsEmpty() {
-			root, _ := stk.Pop()
-			if root.Right != nil {
-				stk.Push(root.Right)
-			}
-			if root.Left != nil {
-				stk.Push(root.Left)
-			}
-			if stk.IsEmpty() {
-				fmt.Println(root.Data)
-			} else {
-				fmt.Print(root.Data, sep)
-			}
+
+	}
+}
+
+// utility function for printing array of values
+func (tree *BinaryTree) print(values []int, sep string) {
+	n := len(values)
+	index := 0
+	for index < n {
+		if index+1 == n {
+			fmt.Println(values[index])
+		} else {
+
+			fmt.Print(values[index], sep)
 		}
+		index++
 	}
 }
