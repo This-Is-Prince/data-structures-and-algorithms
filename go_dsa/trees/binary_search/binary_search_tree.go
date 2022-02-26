@@ -17,6 +17,50 @@ type BinarySearchTree struct {
 }
 
 /*
+	Generate BST Using Traversals
+*/
+// generate bst using preorder
+func (tree *BinarySearchTree) GenerateUsingPreOrder(values ...int) error {
+	if tree.root == nil {
+		if length := len(values); length > 0 {
+			root, stk, index, value := &Node{Data: values[0]}, &Stack{}, 1, 0
+			tree.root = root
+			var newNode *Node
+
+			for index < length {
+				value = values[index]
+				if value == root.Data {
+					return errors.New("duplicate values")
+				} else {
+					newNode = &Node{Data: value}
+					if value < root.Data {
+						stk.Push(root)
+						root.Left = newNode
+					} else {
+						peek, _ := stk.Peek()
+						for !stk.IsEmpty() && peek.Data <= value {
+							if value == peek.Data {
+								return errors.New("duplicate values")
+							}
+							root, _ = stk.Pop()
+							peek, _ = stk.Peek()
+						}
+						root.Right = newNode
+					}
+					root = newNode
+					index++
+				}
+			}
+			return nil
+		} else {
+			return errors.New("can't generate tree, there is no values")
+		}
+	} else {
+		return errors.New("tree is already present")
+	}
+}
+
+/*
 	Create
 */
 // Create using loop
