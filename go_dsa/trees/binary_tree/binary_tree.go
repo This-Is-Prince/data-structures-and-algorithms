@@ -166,11 +166,30 @@ func (tree *BinaryTree) InOrderUsingLoop(sep string) {
 
 // PostOrder Traversals using Loops
 func (tree *BinaryTree) PostOrderUsingLoop(sep string) {
-	if tree.root != nil {
-		stk := &Stack{}
-		stk.Push(tree.root)
-
+	stk := &Stack{}
+	root := tree.root
+	values := []int{}
+	for !stk.IsEmpty() || root != nil {
+		if root != nil {
+			if root.Right != nil {
+				stk.Push(root.Right)
+			}
+			stk.Push(root)
+			root = root.Left
+		} else {
+			root, _ = stk.Pop()
+			top, _ := stk.Peek()
+			if root.Right != nil && root.Right == top {
+				stk.Pop()
+				stk.Push(root)
+				root = root.Right
+			} else {
+				values = append(values, root.Data)
+				root = nil
+			}
+		}
 	}
+	tree.print(values, sep)
 }
 
 // utility function for printing array of values

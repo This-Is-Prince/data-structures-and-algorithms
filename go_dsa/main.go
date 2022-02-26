@@ -294,10 +294,15 @@ func debugQueueUsing2Stack() {
 func debugBinaryTree() {
 	binaryTree := binary_tree.BinaryTree{}
 	binaryTree.Create([]int{5, 8, 6, -1, 9, 3, -1, 4, 2}, -1)
+	fmt.Println("PreOrder")
 	binaryTree.PreOrderUsingRecursion(",")
 	binaryTree.PreOrderUsingLoop(",")
+	fmt.Println("PostOrder")
 	binaryTree.PostOrderUsingRecursion(",")
+	binaryTree.PostOrderUsingLoop(",")
+	fmt.Println("InOrder")
 	binaryTree.InOrderUsingRecursion(",")
 	binaryTree.InOrderUsingLoop(",")
+	fmt.Println("LevelOrder")
 	binaryTree.LevelOrderUsingLoop(",")
 }
