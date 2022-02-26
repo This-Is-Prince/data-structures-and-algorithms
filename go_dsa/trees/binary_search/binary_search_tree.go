@@ -3,6 +3,7 @@ package binary_search
 import (
 	"errors"
 	"fmt"
+	"math"
 )
 
 type Node struct {
@@ -51,6 +52,106 @@ func (tree *BinarySearchTree) CreateUsingRecursion(values ...int) error {
 	}
 }
 
+/*
+	Deletion
+*/
+
+// delete function
+func (tree *BinarySearchTree) Delete(key int) error {
+	if tree.root == nil {
+		return errors.New("tree is empty")
+	} else {
+		var err error
+		tree.root, err = tree.delete(tree.root, key)
+		return err
+	}
+}
+
+// delete function, utils
+func (tree *BinarySearchTree) delete(root *Node, key int) (*Node, error) {
+	if root == nil {
+		return nil, errors.New("can't delete, key is not found")
+	} else if root.Left == nil && root.Right == nil {
+		if root.Data == key {
+			return nil, nil
+		} else {
+			return root, errors.New("can't delete, key is not found")
+		}
+	} else {
+		var err error
+		if key < root.Data {
+			root.Left, err = tree.delete(root.Left, key)
+		} else if key > root.Data {
+			root.Right, err = tree.delete(root.Right, key)
+		} else {
+			if tree.height(root.Left) > tree.height(root.Right) {
+				inPre := tree.inOrderPredecessor(root.Left)
+				root.Data = inPre.Data
+				root.Left, err = tree.delete(root.Left, inPre.Data)
+			} else {
+				inSuc := tree.inOrderSuccessor(root.Right)
+				root.Data = inSuc.Data
+				root.Right, err = tree.delete(root.Right, inSuc.Data)
+			}
+		}
+		return root, err
+	}
+}
+
+/*
+	InOrder Predecessor
+*/
+// InOrder Predecessor function
+func (tree *BinarySearchTree) InOrderPredecessor() *Node {
+	return tree.inOrderPredecessor(tree.root)
+}
+
+// InOrder Predecessor function, utils
+func (tree *BinarySearchTree) inOrderPredecessor(root *Node) *Node {
+	for root != nil && root.Right != nil {
+		root = root.Right
+	}
+	return root
+}
+
+/*
+	InOrder Successor
+*/
+// InOrder Successor function
+func (tree *BinarySearchTree) InOrderSuccessor() *Node {
+	return tree.inOrderPredecessor(tree.root)
+}
+
+// InOrder Successor function, utils
+func (tree *BinarySearchTree) inOrderSuccessor(root *Node) *Node {
+	for root != nil && root.Left != nil {
+		root = root.Left
+	}
+	return root
+}
+
+/*
+	Height
+*/
+// height function
+func (tree *BinarySearchTree) Height() int {
+	return int(tree.height(tree.root))
+}
+
+// height function, utils
+func (tree *BinarySearchTree) height(root *Node) float64 {
+	if root == nil {
+		return 0
+	} else {
+		leftHeight := tree.height(root.Left)
+		rightHeight := tree.height(root.Right)
+		return math.Max(leftHeight, rightHeight) + 1
+	}
+}
+
+/*
+	Insertion
+*/
 // insert using loop
 func (tree *BinarySearchTree) InsertUsingLoop(value int) error {
 	if newNode := (&Node{Data: value}); newNode == nil {
