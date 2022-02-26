@@ -110,19 +110,19 @@ func (tree *BinaryTree) postOrderUsingRecursion(values []int, sep string, node *
 
 // LevelOrder Traversals using Loop
 func (tree *BinaryTree) LevelOrderUsingLoop(sep string) {
-	if tree.root != nil {
-		values := []int{}
+	if root := tree.root; root != nil {
 		q := &Queue{}
-		q.EnQueue(tree.root)
+		q.EnQueue(root)
+		values := []int{}
 		for !q.IsEmpty() {
-			root, _ := q.DeQueue()
+			root, _ = q.DeQueue()
+			values = append(values, root.Data)
 			if root.Left != nil {
 				q.EnQueue(root.Left)
 			}
 			if root.Right != nil {
 				q.EnQueue(root.Right)
 			}
-			values = append(values, root.Data)
 		}
 		tree.print(values, sep)
 	}
