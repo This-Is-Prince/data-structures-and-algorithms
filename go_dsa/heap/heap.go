@@ -14,6 +14,7 @@ type Heap struct {
 	Which   string
 	data    []int
 	cmpFunc func(int, int) bool
+	index   int
 }
 
 // Create function for creating heap with given values
@@ -39,7 +40,8 @@ func (heap *Heap) Insert(value int) {
 		heap.data = []int{0}
 	}
 	heap.data = append(heap.data, value)
-	index := len(heap.data) - 1
+	heap.index++
+	index := heap.index
 	for index > 1 && heap.cmpFunc(value, heap.data[index/2]) {
 		heap.data[index] = heap.data[index/2]
 		index = index / 2
@@ -49,15 +51,15 @@ func (heap *Heap) Insert(value int) {
 
 // delete max priority heap value
 func (heap *Heap) Delete() (int, error) {
-	if length := len(heap.data); length <= 1 {
+	if index := heap.index; index < 1 {
 		return 0, errors.New("heap is empty")
 	} else {
 		value, i, j := heap.data[1], 1, 2
-		length--
-		heap.data[1] = heap.data[length]
-		heap.data = heap.data[:length]
-		for j < length {
-			if j < length-1 {
+		heap.data[1] = heap.data[index]
+		heap.data[index] = value
+		heap.index--
+		for j < index {
+			if j < index-1 {
 				if heap.cmpFunc(heap.data[j+1], heap.data[j]) {
 					j = j + 1
 				}
@@ -76,12 +78,12 @@ func (heap *Heap) Delete() (int, error) {
 
 // display all heap values
 func (heap *Heap) Display(sep string) {
-	if length := len(heap.data); length > 1 {
-		index := 1
-		for index < length-1 {
-			fmt.Print(heap.data[index], sep)
-			index++
+	if index := heap.index; index > 0 {
+		i := 1
+		for i < index {
+			fmt.Print(heap.data[i], sep)
+			i++
 		}
-		fmt.Println(heap.data[index])
+		fmt.Println(heap.data[i])
 	}
 }
