@@ -395,8 +395,7 @@ func debugBinarySearchTree() {
 }
 
 func debugHeap() {
-	h := heap.Heap{Which: heap.MIN}
-
+	// h := heap.Heap{}
 	// h.Display(",")
 	// h.Insert(10)
 	// h.Display(",")
@@ -413,7 +412,24 @@ func debugHeap() {
 	// h.Insert(35)
 	// h.Display(",")
 
+	// h := heap.Heap{Which: heap.MIN}
+	h := heap.Heap{Which: heap.MAX}
 	h.Display(",")
 	h.Create(10, 20, 30, 25, 5, 40, 35)
 	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
+	h.Display(",")
+	fmt.Println(h.Delete())
 }
