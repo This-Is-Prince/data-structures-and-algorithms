@@ -308,4 +308,9 @@ func debugBinaryTree() {
 	binaryTree.InOrderUsingLoop(",")
 	fmt.Println("LevelOrder")
 	binaryTree.LevelOrderUsingLoop(",")
+
+	fmt.Println(binaryTree.Count())
+	fmt.Println(binaryTree.Height())
+	fmt.Println(binaryTree.CountLeafNode())
+	fmt.Println(binaryTree.CountNonLeafNode())
 }

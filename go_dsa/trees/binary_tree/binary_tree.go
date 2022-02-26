@@ -3,6 +3,7 @@ package binary_tree
 import (
 	"errors"
 	"fmt"
+	"math"
 )
 
 type Node struct {
@@ -50,6 +51,60 @@ func (tree *BinaryTree) Create(values []int, nilValue int) error {
 		return nil
 	} else {
 		return errors.New("tree is empty")
+	}
+}
+
+func (tree *BinaryTree) Count() int {
+	return tree.count(tree.root)
+}
+
+func (tree *BinaryTree) count(root *Node) int {
+	if root == nil {
+		return 0
+	} else {
+		return tree.count(root.Left) + tree.count(root.Right) + 1
+	}
+}
+
+func (tree *BinaryTree) Height() int {
+	return int(tree.height(tree.root))
+}
+
+func (tree *BinaryTree) height(root *Node) float64 {
+	if root == nil {
+		return -1
+	} else {
+		leftHeight := tree.height(root.Left)
+		rightHeight := tree.height(root.Right)
+		return math.Max(leftHeight, rightHeight) + 1
+	}
+}
+
+func (tree *BinaryTree) CountLeafNode() int {
+	return tree.countLeafNode(tree.root)
+}
+
+func (tree *BinaryTree) countLeafNode(root *Node) int {
+	if root == nil {
+		return 0
+	} else {
+		if root.Left == nil && root.Right == nil {
+			return 1
+		} else {
+			return tree.countLeafNode(root.Left) + tree.countLeafNode(root.Right)
+		}
+	}
+}
+
+func (tree *BinaryTree) CountNonLeafNode() int {
+	return tree.countNonLeafNode(tree.root)
+}
+
+func (tree *BinaryTree) countNonLeafNode(root *Node) int {
+	if root == nil || (root.Left == nil && root.Right == nil) {
+		return 0
+	} else {
+		return tree.countNonLeafNode(root.Left) + tree.countNonLeafNode(root.Right) + 1
 	}
 }
 
