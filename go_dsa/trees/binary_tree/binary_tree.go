@@ -145,3 +145,25 @@ func (tree *BinaryTree) InOrderUsingLoop(sep string) {
 	}
 	fmt.Println()
 }
+
+// PreOrder Traversals using Loops
+func (tree *BinaryTree) PreOrderUsingLoop(sep string) {
+	if tree.root != nil {
+		stk := &Stack{}
+		stk.Push(tree.root)
+		for !stk.IsEmpty() {
+			root, _ := stk.Pop()
+			if root.Right != nil {
+				stk.Push(root.Right)
+			}
+			if root.Left != nil {
+				stk.Push(root.Left)
+			}
+			if stk.IsEmpty() {
+				fmt.Println(root.Data)
+			} else {
+				fmt.Print(root.Data, sep)
+			}
+		}
+	}
+}

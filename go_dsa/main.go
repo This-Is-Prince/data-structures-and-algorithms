@@ -295,6 +295,7 @@ func debugBinaryTree() {
 	binaryTree := binary_tree.BinaryTree{}
 	binaryTree.Create([]int{5, 8, 6, -1, 9, 3, -1, 4, 2}, -1)
 	binaryTree.PreOrderUsingRecursion(",")
+	binaryTree.PreOrderUsingLoop(",")
 	binaryTree.PostOrderUsingRecursion(",")
 	binaryTree.InOrderUsingRecursion(",")
 	binaryTree.InOrderUsingLoop(",")
