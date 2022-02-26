@@ -253,6 +253,55 @@ func (tree *BinaryTree) generateUsingPreAndInOrder(pre, in []int, length, low, h
 	}
 	return nil, nil
 }
+
+// generate tree from preorder and inorder function
+func (tree *BinaryTree) GenerateUsingPostAndInOrder(post, in []int) error {
+	if tree.root == nil {
+		len_post := len(post)
+		len_in := len(in)
+		if len_post != len_in {
+			return errors.New("postorder and inorder are not the traversals of same tree")
+		}
+		index := len_post - 1
+		root, err := tree.generateUsingPostAndInOrder(post, in, 0, len_post-1, &index)
+		if err != nil {
+			return err
+		}
+		tree.root = root
+		return nil
+	} else {
+		return errors.New("tree is already present")
+	}
+}
+
+func (tree *BinaryTree) generateUsingPostAndInOrder(pre, in []int, low, high int, index *int) (*Node, error) {
+	if low <= high && *index >= 0 {
+		value := pre[*index]
+		*index--
+		newNode := &Node{Data: value}
+
+		i, err := tree.indexOf(in, value, low, high)
+		if err != nil {
+			return nil, errors.New("preorder and inorder are not the traversals of same tree")
+		}
+
+		right, err := tree.generateUsingPostAndInOrder(pre, in, i+1, high, index)
+		if err != nil {
+			return nil, errors.New("preorder and inorder are not the traversals of same tree")
+		}
+		newNode.Right = right
+
+		left, err := tree.generateUsingPostAndInOrder(pre, in, low, i-1, index)
+		if err != nil {
+			return nil, errors.New("preorder and inorder are not the traversals of same tree")
+		}
+		newNode.Left = left
+
+		return newNode, nil
+	}
+	return nil, nil
+}
+
 func (tree *BinaryTree) indexOf(order []int, elm, low, high int) (int, error) {
 	for low <= high {
 		if order[low] == elm {
