@@ -32,3 +32,15 @@ func Sort(values []int) {
 		}
 	}
 }
+
+/*
+           | Bubble Sort | Insertion Sort |
+Min Comp   | 	O(n)     |		O(n)	  | Already In Ascending
+Max Comp   |    O(n^2)   |      O(n^2)    | Already In Descending
+Min Swap   |    O(1)     |      O(1)      | Ascending
+Max Swap   |    O(n^2)   |      O(n^2)    | Descending
+Adaptive   |     True    |      True      |
+Stable     |     True    |      True      |
+LinkedList |     NO      |      YES       |
+K Passes   |     YES     |      NO        |
+*/

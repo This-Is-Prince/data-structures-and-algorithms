@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 
+	// Heap
 	heap "go_dsa/heap"
+	// Queue
 	circular_queue_using_array "go_dsa/queues/circular/using_array"
 	circular_queue_using_linkedlist "go_dsa/queues/circular/using_linkedlist"
 	dequeue_using_array "go_dsa/queues/double_ended/using_array"
@@ -11,11 +13,18 @@ import (
 	linear_queue_using_array "go_dsa/queues/linear/using_array"
 	linear_queue_using_linkedlist "go_dsa/queues/linear/using_linkedlist"
 	queue_using_2_stack "go_dsa/queues/queue_using_2_stack"
-	bubble "go_dsa/sorting_techniques/bubble"
-	insertion "go_dsa/sorting_techniques/insertion"
+
+	// Sorting Techniques
+	"go_dsa/sorting_techniques/bubble"
+	"go_dsa/sorting_techniques/insertion"
+	"go_dsa/sorting_techniques/selection"
+
+	// Stack
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
 	stk_using_array "go_dsa/stack/using_array"
 	stk_using_linkedlist "go_dsa/stack/using_linkedlist"
+
+	// Tree
 	binary_search_tree "go_dsa/trees/binary_search"
 	binary_tree "go_dsa/trees/binary_tree"
 )
@@ -442,9 +451,11 @@ func debugHeap() {
 
 func debugSortingTechniques() {
 	// Bubble Sort
-	// debugBubbleSort([]int{3, 7, 9, 10, 6, 5, 12, 4, 11, 2})
+	debugBubbleSort([]int{3, 7, 9, 10, 6, 5, 12, 4, 11, 2})
 	// Insertion Sort
 	debugInsertionSort([]int{8, 5, 7, 3, 2})
+	// Selection Sort
+	debugSelectionSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
 }
 
 func debugBubbleSort(values []int) {
@@ -457,4 +468,10 @@ func debugInsertionSort(values []int) {
 	fmt.Println("Before Insertion Sort: ", values)
 	insertion.Sort(values)
 	fmt.Println("After Insertion Sort: ", values)
+}
+
+func debugSelectionSort(values []int) {
+	fmt.Println("Before Selection Sort: ", values)
+	selection.Sort(values)
+	fmt.Println("After Selection Sort: ", values)
 }
