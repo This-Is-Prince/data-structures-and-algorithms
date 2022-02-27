@@ -17,6 +17,7 @@ import (
 	// Sorting Techniques
 	"go_dsa/sorting_techniques/bubble"
 	"go_dsa/sorting_techniques/insertion"
+	"go_dsa/sorting_techniques/quick"
 	"go_dsa/sorting_techniques/selection"
 
 	// Stack
@@ -456,6 +457,8 @@ func debugSortingTechniques() {
 	debugInsertionSort([]int{8, 5, 7, 3, 2})
 	// Selection Sort
 	debugSelectionSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
+	// Quick Sort
+	debugQuickSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
 }
 
 func debugBubbleSort(values []int) {
@@ -474,4 +477,10 @@ func debugSelectionSort(values []int) {
 	fmt.Println("Before Selection Sort: ", values)
 	selection.Sort(values)
 	fmt.Println("After Selection Sort: ", values)
+}
+
+func debugQuickSort(values []int) {
+	fmt.Println("Before Quick Sort: ", values)
+	quick.Sort(values)
+	fmt.Println("After Quick Sort: ", values)
 }

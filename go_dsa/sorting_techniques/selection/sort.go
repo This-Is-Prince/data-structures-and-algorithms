@@ -11,7 +11,7 @@ package selection
 	1. min - O(n^2), max - O(n^2)
 	2. min - O(1), max - O(n)
 	3. selection sort is not adaptive
-	4. insertion sort is not stable
+	4. selection sort is not stable
 	5. no extra memory O(1)
 
 	TIME
