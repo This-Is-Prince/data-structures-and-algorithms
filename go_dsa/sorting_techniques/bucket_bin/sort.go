@@ -14,6 +14,9 @@ func Sort(values []int) error {
 	}
 	bins := make([]*node, max+1)
 	for _, value := range values {
+		if value < 0 {
+			return errors.New("value can't be negative")
+		}
 		insert(bins, value, value)
 	}
 
