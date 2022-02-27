@@ -21,6 +21,7 @@ import (
 	"go_dsa/sorting_techniques/insertion"
 	"go_dsa/sorting_techniques/merge"
 	"go_dsa/sorting_techniques/quick"
+	"go_dsa/sorting_techniques/radix"
 	"go_dsa/sorting_techniques/selection"
 
 	// Stack
@@ -465,9 +466,11 @@ func debugSortingTechniques() {
 	// Merge Sort
 	debugMergeSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
 	// Count Sort
-	debugCountSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
+	debugCountSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
 	// Bucket Sort
-	debugBucketSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
+	debugBucketSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
+	// Bucket Sort
+	debugRadixSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
 }
 
 func debugBubbleSort(values []int) {
@@ -516,4 +519,13 @@ func debugBucketSort(values []int) {
 		fmt.Println(err)
 	}
 	fmt.Println("After Bucket Sort: ", values)
+}
+
+func debugRadixSort(values []int) {
+	fmt.Println("Before Radix Sort: ", values)
+	err := radix.Sort(values)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("After Radix Sort: ", values)
 }
