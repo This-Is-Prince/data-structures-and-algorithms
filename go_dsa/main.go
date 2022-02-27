@@ -16,6 +16,7 @@ import (
 
 	// Sorting Techniques
 	"go_dsa/sorting_techniques/bubble"
+	"go_dsa/sorting_techniques/bucket_bin"
 	"go_dsa/sorting_techniques/count"
 	"go_dsa/sorting_techniques/insertion"
 	"go_dsa/sorting_techniques/merge"
@@ -465,6 +466,8 @@ func debugSortingTechniques() {
 	debugMergeSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
 	// Count Sort
 	debugCountSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
+	// Bucket Sort
+	debugBucketSort([]int{11, 13, 7, 2, 6, 9, 4, 5, 10, 3})
 }
 
 func debugBubbleSort(values []int) {
@@ -504,4 +507,13 @@ func debugCountSort(values []int) {
 		fmt.Println(err)
 	}
 	fmt.Println("After Count Sort: ", values)
+}
+
+func debugBucketSort(values []int) {
+	fmt.Println("Before Bucket Sort: ", values)
+	err := bucket_bin.Sort(values)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("After Bucket Sort: ", values)
 }
