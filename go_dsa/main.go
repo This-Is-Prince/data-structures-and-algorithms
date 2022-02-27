@@ -11,6 +11,7 @@ import (
 	linear_queue_using_array "go_dsa/queues/linear/using_array"
 	linear_queue_using_linkedlist "go_dsa/queues/linear/using_linkedlist"
 	queue_using_2_stack "go_dsa/queues/queue_using_2_stack"
+	bubble "go_dsa/sorting_techniques/bubble"
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
 	stk_using_array "go_dsa/stack/using_array"
 	stk_using_linkedlist "go_dsa/stack/using_linkedlist"
@@ -34,7 +35,8 @@ func main() {
 	// debugQueueUsing2Stack()
 	// debugBinaryTree()
 	// debugBinarySearchTree()
-	debugHeap()
+	// debugHeap()
+	debugSortingTechniques()
 }
 
 func debugStackUsingArray() {
@@ -435,4 +437,12 @@ func debugHeap() {
 
 	values := heap.Sort(heap.INCREASING, 10, 20, 30, 25, 5, 40, 35)
 	fmt.Println(values)
+}
+
+func debugSortingTechniques() {
+	values := []int{8, 5, 7, 3, 2}
+	// Bubble Sort
+	fmt.Println("Before Bubble Sort: ", values)
+	bubble.Sort(values)
+	fmt.Println("After Bubble Sort: ", values)
 }
