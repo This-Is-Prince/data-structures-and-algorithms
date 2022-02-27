@@ -23,6 +23,7 @@ import (
 	"go_dsa/sorting_techniques/quick"
 	"go_dsa/sorting_techniques/radix"
 	"go_dsa/sorting_techniques/selection"
+	"go_dsa/sorting_techniques/shell"
 
 	// Stack
 	stk_questions "go_dsa/stack/questions/parenthesis_matching"
@@ -469,8 +470,10 @@ func debugSortingTechniques() {
 	debugCountSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
 	// Bucket Sort
 	debugBucketSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
-	// Bucket Sort
+	// Radix Sort
 	debugRadixSort([]int{237, 146, 259, 348, 152, 163, 235, 48, 36, 62})
+	// Shell Sort
+	debugShellSort([]int{11, 13, 7, 12, 16, 9, 24, 5, 10, 3})
 }
 
 func debugBubbleSort(values []int) {
@@ -528,4 +531,13 @@ func debugRadixSort(values []int) {
 		fmt.Println(err)
 	}
 	fmt.Println("After Radix Sort: ", values)
+}
+
+func debugShellSort(values []int) {
+	fmt.Println("Before Shell Sort: ", values)
+	err := shell.Sort(values)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("After Shell Sort: ", values)
 }
